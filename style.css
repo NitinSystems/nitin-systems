@@ -31,6 +31,12 @@
     --element-gap: 1.25rem; /* Reduced from 1.75rem for tighter information density */
 }
 
+@media (max-width: 768px) {
+    :root {
+        --card-pad: 1.5rem; /* 24px - Optimized for mobile density */
+    }
+}
+
 /* Base Styles */
 body {
     background-color: var(--bg-primary);
