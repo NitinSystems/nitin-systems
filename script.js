@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (viewChecklistBtn) {
         viewChecklistBtn.addEventListener('click', () => {
             // Restore Privacy Mode & Smoothness
-            openModal('The-Lead-Engine-Checklist.pdf#toolbar=0&navpanes=0&scrollbar=0');
+            openModal('assets/pdfs/the-lead-engine-checklist.pdf#toolbar=0&navpanes=0&scrollbar=0');
         });
     }
 
