@@ -3,470 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitin Systems | Marketing Systems & Automation</title>
+    <title>Nitin Systems | Marketing Systems & Business Automation</title>
+    
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description" content="Nitin Systems provides high-performance marketing automation, CRM structure, and execution systems for business growth. Reduce chaos and scale efficiently.">
+    <meta name="keywords" content="Nitin Systems, Marketing Automation, CRM Systems, Business Operations, Workflow Optimization, GoHighLevel, HubSpot, Lead Capture">
+    <meta name="author" content="Nitin Systems">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitinsystems.com/">
+    <meta property="og:title" content="Nitin Systems | Marketing Systems & Business Automation">
+    <meta property="og:description" content="I build CRM & Automation systems that turn leads into structured revenue.">
+    <meta property="og:image" content="https://nitinsystems.com/assets/og-preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon_elite.png">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- External Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <style>
-        :root {
-            --mouse-x: 50%;
-            --mouse-y: 50%;
-            --blue-glow: rgba(37, 99, 235, 0.15);
-            --scroll-y: 0;
-            --wave-shift: 0;
-        }
-
-        body {
-            background-color: #020308;
-            color: #cbd5e1;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            margin: 0;
-            scroll-behavior: smooth;
-        }
-
-        /* --- THE NOISE GRAIN --- */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 99;
-        }
-
-        /* --- THE DYNAMIC FLUID BACKGROUND --- */
-        .ambient-wave {
-            position: fixed;
-            width: 150%;
-            height: 120vh;
-            top: -10%;
-            left: -25%;
-            z-index: -2;
-            opacity: 0.05;
-            pointer-events: none;
-            background: radial-gradient(circle at 50% 50%, #3b82f6 0%, transparent 60%);
-            filter: blur(120px);
-            transform: translate(calc(var(--scroll-y) * -0.2px), calc(var(--scroll-y) * -0.1px)) rotate(calc(var(--scroll-y) * 0.02deg));
-            transition: transform 1.2s cubic-bezier(0.1, 0, 0.3, 1);
-        }
-
-        /* --- THE ATMOSPHERIC SPOTLIGHT --- */
-        #flashlight-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 10;
-            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--blue-glow), transparent 80%);
-            mix-blend-mode: screen;
-        }
-
-        #light-tip {
-            position: fixed;
-            width: 140px;
-            height: 140px;
-            pointer-events: none;
-            z-index: 20;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            mix-blend-mode: overlay;
-            filter: blur(40px);
-            transform: translate(-50%, -50%);
-            left: var(--mouse-x);
-            top: var(--mouse-y);
-        }
-
-        .grid-pattern {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.1;
-            background-size: 80px 80px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            transform: translateY(calc(var(--scroll-y) * -0.15px));
-        }
-
-        /* --- RIPPLE REVEAL --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px) skewY(1deg);
-            transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) skewY(0);
-        }
-
-        .bento-card {
-            position: relative;
-            background: rgba(10, 15, 29, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2rem;
-            backdrop-filter: blur(12px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-        .bento-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-8px);
-        }
-
-        .pill-label {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1.2rem;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 9999px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: #60a5fa;
-            backdrop-filter: blur(8px);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.05);
-        }
-
-        .process-step {
-            position: relative;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            transition: all 0.5s ease;
-        }
-        .process-step:hover {
-            background: rgba(59, 130, 246, 0.03);
-            border-color: rgba(59, 130, 246, 0.2);
-            transform: scale(1.02);
-        }
-
-        @keyframes scan { 0% { transform: translateY(-100%); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: translateY(200%); opacity: 0; } }
-        .scanner-line { animation: scan 5s ease-in-out infinite; }
-
-        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
-
-        .text-animate-gradient {
-            background: linear-gradient(to right, #3b82f6, #93c5fd, #ffffff, #3b82f6);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shine 5s linear infinite;
-        }
-        @keyframes shine { to { background-position: 200% center; } }
-
-        .phase-card { 
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        .phase-card.active {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateX(0.75rem);
-        }
-        .phase-card.active h3 {
-            color: #3b82f6;
-        }
-
-        .before-after-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 2rem;
-        }
-
-        .section-divider {
-            position: relative;
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            margin: 2.5rem 0;
-        }
-
-        #navbar {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        #navbar.scrolled {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(24px);
-            border-color: rgba(59, 130, 246, 0.2);
-            transform: translate(-50%, 0) scale(0.98);
-        }
-    </style>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="flashlight-overlay"></div>
-    <div id="light-tip"></div>
-    <div class="grid-pattern"></div>
-    <div class="ambient-wave" id="wave-parallax"></div>
 
-    <!-- 1. STICKY NAVIGATION -->
-    <nav id="navbar" class="fixed top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[94%] max-w-7xl rounded-3xl py-4 px-6">
+    <!-- 1. NAVIGATION -->
+    <nav id="navbar" class="fixed top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[94%] max-w-7xl rounded-3xl border border-transparent py-4 px-6 bg-[#050812]/90 backdrop-blur-md">
         <div class="flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer group">
-                <div class="w-9 h-9 bg-blue-600 rounded-xl rotate-45 flex items-center justify-center font-bold text-white text-xs group-hover:rotate-90 transition-all duration-700 shadow-[0_0_20px_rgba(37,99,235,0.4)]">N</div>
-                <span class="font-bold tracking-tighter text-white uppercase text-sm">Nitin Systems</span>
+            <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <!-- Premium NS Monogram Logo -->
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-blue-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div class="relative w-10 h-10 rounded-xl bg-slate-900 border border-blue-500/30 flex items-center justify-center font-black text-blue-400 text-[10px] shadow-xl">
+                        NS
+                    </div>
+                </div>
+                <span class="font-black tracking-[0.3em] text-white uppercase text-[10px]">NITIN SYSTEMS</span>
             </div>
-            <div class="hidden lg:flex items-center gap-6 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-300">
-                <a href="#systems" class="hover:text-blue-400 transition-colors">Systems</a>
-                <a href="#process" class="hover:text-blue-400 transition-colors text-nowrap">Process Architecture</a>
-                <a href="#implementations" class="hover:text-blue-400 transition-colors text-nowrap">Implementations</a>
-                <a href="#how-i-work" class="hover:text-blue-400 transition-colors text-nowrap">How I Work</a>
-                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
-                <button class="bg-white text-black px-6 py-2.5 rounded-2xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-xl text-[10px]">Get A System Review</button>
+            
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-6 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+                <a href="#about" class="hover:text-blue-400 transition-colors">The Architect</a>
+                <a href="#systems" class="hover:text-blue-400 transition-colors">Blueprints</a>
+                <a href="#how-i-work" class="hover:text-blue-400 transition-colors">Delivery</a>
+                <button id="theme-toggle" class="hover:text-blue-400 transition-colors ml-2" aria-label="Toggle Theme">
+                    <i data-lucide="sun" class="w-4 h-4 sun-icon"></i>
+                    <i data-lucide="moon" class="w-4 h-4 moon-icon hidden"></i>
+                </button>
+            <div class="flex items-center gap-4">
+                <button id="nav-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="btn-slide-hover px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest z-10 overflow-hidden">
+                    <span>Get a System Review</span>
+                </button>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="flex lg:hidden items-center gap-4">
+                <button id="theme-toggle-mobile" class="text-slate-400 hover:text-white transition-colors" aria-label="Toggle Theme">
+                    <i data-lucide="sun" class="w-5 h-5 sun-icon"></i>
+                    <i data-lucide="moon" class="w-5 h-5 moon-icon hidden"></i>
+                </button>
+                <button id="mobile-menu-btn" class="text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0f172a]/95 backdrop-blur-lg z-[60] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-500">
+        <button id="close-menu-btn" class="absolute top-10 right-8 text-white">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#systems" class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Systems</a>
+        <a href="#process" class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Process Architecture</a>
+        <a href="#how-i-work" class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">How I Work</a>
+        <a href="#about" class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">About</a>
+        <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="mobile-link mt-8 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black shadow-xl uppercase tracking-widest text-sm">GET A SYSTEM REVIEW</button>
+    </div>
+
     <!-- 2. HERO SECTION -->
-    <section class="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
+    <section class="min-h-screen bg-primary flex items-center justify-center overflow-hidden pt-28 lg:pt-36">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="text-left relative z-10 reveal active">
-                <div class="pill-label">
-                    <span class="flex h-2 w-2 mr-3">
-                        <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                    </span>
+            <div class="text-left relative z-10 reveal active mt-0">
+                <div class="inline-block px-5 py-2 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] font-black tracking-[0.3em] uppercase mb-6">
                     Marketing Systems & Automation
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-8">
-                    Systems Should <br />
-                    Reduce Chaos <br />
-                    <span class="text-animate-gradient italic text-5xl md:text-6xl lg:text-7xl">Before Growth.</span>
+                <h1 class="max-w-xl">
+                    I Build CRM & Automation Systems That Turn Leads <span class="text-animate-gradient">Into Structured Revenue.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-400 max-w-lg mb-12 leading-relaxed font-medium">
-                    I design and implement execution systems focused on CRM structure, lifecycle automation, and workflows that reduce manual effort.<br/><br/>
-                    Structure-First Work. Automation Comes After Clarity.
+                <p class="max-w-lg section-subtext text-lg">
+                    I design and implement execution infrastructure for <strong>Service Businesses, Clinics, and Scaling Agencies</strong> who need pipeline clarity, not more spreadsheets.
                 </p>
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8 ripple-item">
-                    <button class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-[2rem] font-bold flex items-center gap-4 transition-all transform hover:scale-105 shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] uppercase text-xs">
-                        Get A Free System Review <i data-lucide="chevron-right"></i>
-                    </button>
-                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Execution Clarity: No Pressure To Proceed.</p>
+                <p class="max-w-lg font-bold text-bright mb-4">Stop leaking leads to manual chaos. Start scaling with systems.</p>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <span class="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-black uppercase tracking-widest">Minimize Overhead</span>
+                    <span class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-black uppercase tracking-widest">Automate Friction</span>
+                    <span class="px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[9px] font-black uppercase tracking-widest">Scale Output</span>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="flex flex-col items-center gap-2 w-full sm:w-auto">
+                        <button id="hero-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-[2rem] font-black flex items-center gap-4 transition-all transform hover:scale-105 shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] uppercase text-sm w-full sm:w-auto">
+                            Get Your Free System Audit <i data-lucide="chevron-right"></i>
+                        </button>
+                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest opacity-60">No commitment. Just a 15-min diagnostic.</p>
+                    </div>
                 </div>
             </div>
-            <div class="relative flex justify-center items-center h-[400px] lg:h-[500px] reveal active">
-                <div class="absolute w-[350px] h-[350px] bg-blue-600/10 rounded-full blur-[140px]"></div>
-                <div class="relative w-72 md:w-80 h-72 md:h-80 border border-white/10 rounded-[5rem] rotate-45 flex items-center justify-center bg-slate-950/40 backdrop-blur-3xl shadow-2xl overflow-hidden group">
-                    <div class="w-40 md:w-48 h-40 md:h-48 border border-blue-500/20 rounded-[4rem] flex items-center justify-center animate-spin-slow">
-                        <div class="w-16 md:w-20 h-16 md:h-20 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl flex items-center justify-center -rotate-45 shadow-[0_0_60px_rgba(37,99,235,0.6)]">
-                            <i data-lucide="workflow" class="text-white w-8 h-8 md:w-10 md:h-10"></i>
+            <div class="relative flex justify-center items-center h-[500px] lg:h-[600px] reveal active">
+                <div class="absolute w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-blue-600/10 rounded-full blur-[140px]"></div>
+                <!-- CSS Workflow Pipeline Graphic -->
+                <div class="relative w-full max-w-md h-full flex flex-col items-center justify-center gap-6 z-10 scale-90 md:scale-100">
+                    <!-- Top Block: Lead Capture -->
+                    <div class="w-64 bg-slate-900/80 border border-blue-500/30 rounded-2xl p-4 shadow-2xl backdrop-blur-xl flex items-center gap-4 transform -translate-x-8">
+                        <div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center border border-blue-500/50">
+                            <i data-lucide="filter" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white uppercase tracking-wider">Lead Captured</div>
+                            <div class="text-[10px] text-slate-400 font-mono">Webhook Triggered</div>
                         </div>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-transparent -translate-y-full scanner-line"></div>
+                    
+                    <!-- Connector Line -->
+                    <div class="w-0.5 h-10 bg-gradient-to-b from-blue-500/50 to-indigo-500/50 relative">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    </div>
+
+                    <!-- Middle Block: Logic/CRM -->
+                    <div class="w-64 bg-slate-900/80 border border-indigo-500/30 rounded-2xl p-4 shadow-2xl backdrop-blur-xl flex items-center gap-4 transform translate-x-8">
+                        <div class="w-10 h-10 rounded-full bg-indigo-600/20 flex items-center justify-center border border-indigo-500/50">
+                            <i data-lucide="database" class="w-5 h-5 text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white uppercase tracking-wider">CRM Synced</div>
+                            <div class="text-[10px] text-slate-400 font-mono">Stage: Qualification</div>
+                        </div>
+                    </div>
+
+                    <!-- Connector Line -->
+                    <div class="w-0.5 h-10 bg-gradient-to-b from-indigo-500/50 to-green-500/50 relative">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-indigo-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                    </div>
+
+                    <!-- Bottom Block: Action -->
+                    <div class="w-64 bg-slate-900/80 border border-green-500/30 rounded-2xl p-4 shadow-2xl backdrop-blur-xl flex items-center gap-4 transform -translate-x-4">
+                        <div class="w-10 h-10 rounded-full bg-green-600/20 flex items-center justify-center border border-green-500/50">
+                            <i data-lucide="zap" class="w-5 h-5 text-green-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-white uppercase tracking-wider">Automated Action</div>
+                            <div class="text-[10px] text-slate-400 font-mono">SMS / Email Dispatched</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.5 TECH STACK STRIP -->
+    <section id="tech-stack-strip" class="section-alt py-10 border-y border-white/5 overflow-hidden transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6 reveal">
+            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] text-center mb-8">Core Infrastructure & Automation Stack</p>
+            <div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
+                <div class="flex w-max animate-infinite-scroll gap-20 lg:gap-32 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 group">
+                    <!-- Original items -->
+                    <div class="flex items-center justify-center shrink-0">
+                        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/knES3eSWYIsc5YSZ3YLl/media/68dc14d7a969ba71daf21593.png" alt="GoHighLevel Logo" class="h-6 lg:h-7 object-contain">
+                    </div>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/hubspot/FF7A59" alt="HubSpot Logo" class="h-6 w-6"> HubSpot
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/zapier/FF4A00" alt="Zapier Logo" class="h-6 w-6"> Zapier
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/make" alt="Make Logo" class="h-6 w-6 adaptive-logo"> Make
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/zoho" alt="Zoho Logo" class="h-6 w-6 adaptive-logo"> Zoho
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.worldvectorlogo.com/logos/openai-2.svg" alt="OpenAI Logo" class="h-6 w-6 openai-logo"> OpenAI
+                    </span>
+
+                    <!-- Duplicated items for seamless infinite scroll -->
+                    <div class="flex items-center justify-center shrink-0">
+                        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/knES3eSWYIsc5YSZ3YLl/media/68dc14d7a969ba71daf21593.png" alt="GoHighLevel Logo" class="h-6 lg:h-7 object-contain">
+                    </div>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/hubspot/FF7A59" alt="HubSpot Logo" class="h-6 w-6"> HubSpot
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/zapier/FF4A00" alt="Zapier Logo" class="h-6 w-6"> Zapier
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/make" alt="Make Logo" class="h-6 w-6 adaptive-logo"> Make
+                    </span>
+                    <span class="text-xl font-black tracking-tight text-white flex items-center gap-3 shrink-0">
+                        <img src="https://cdn.simpleicons.org/zoho" alt="Zoho Logo" class="h-6 w-6 adaptive-logo"> Zoho
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE ARCHITECT (Authority Front-Loading) -->
+    <section id="about" class="bg-secondary scroll-mt-24 py-24">
+        <div class="max-w-5xl mx-auto reveal">
+            <div class="section-tag justify-center md:justify-start">The Architect</div>
+            <div class="about-card grid md:grid-cols-[1fr_2fr] gap-12 items-center bg-white/[0.02] border border-white/5 rounded-[3rem] p-8 md:p-14 transition-all duration-500 hover:border-blue-500/20">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-48 h-48 rounded-full bg-slate-800 border-4 border-blue-500/20 overflow-hidden mb-8 shadow-2xl relative group">
+                        <img src="Wine Suit Image.png" alt="Nitin Mishra" class="w-full h-full object-cover object-[50%_15%] transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-xl text-white mb-2">Nitin Mishra</h3>
+                    <p class="text-xs text-blue-400 uppercase tracking-[0.3em] font-black mb-6">Systems & Automation</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.linkedin.com/in/srnitinmishra/" target="_blank" class="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-500 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_-5px_rgba(37,99,235,0.2)]" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="mailto:NitinMishra.me@outlook.com" class="w-10 h-10 rounded-xl bg-white/5 text-slate-300 flex items-center justify-center hover:bg-white/10 hover:text-white transition-all transform hover:-translate-y-1" aria-label="Email">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <p class="text-xl text-slate-200 leading-relaxed font-semibold text-center md:text-left">
+                        I build the Marketing Systems and Automation Infrastructure that turn leads into Structured Revenue.
+                    </p>
+                    <p class="text-base text-slate-400 leading-relaxed text-center md:text-left">
+                        I focus on reducing manual chaos by engineering reliable follow-up and CRM workflows. I help businesses move away from scattered tasks and into a structured execution model that scales. My goal is to build the foundation today that allows your business to grow without friction.
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400">GoHighLevel</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400">Make.com</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400">HubSpot</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-400">Zapier</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 SCENARIO MODELING (The Logic Proof) -->
+    <section class="bg-secondary py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 reveal">
+            <div class="text-center mb-16">
+                <div class="section-tag mx-auto">Scenario Modeling</div>
+                <h2 class="mt-4">Manual Friction vs. <br/><span class="text-accent italic">Systemized Scale.</span></h2>
+                <p class="section-subtext max-w-2xl mx-auto mt-6">A logical comparison of operational throughput when systems replace memory.</p>
+            </div>
+
+            <div class="comparison-grid three-cols">
+                <!-- Scenario A -->
+                <div class="comparison-card glow-red border-red-500/10">
+                    <div class="text-[9px] font-black text-red-500/50 uppercase tracking-[0.2em] mb-6">Latency_Gap: Revenue_Leakage</div>
+                    <p class="text-sm leading-relaxed mb-10 opacity-80">"High-value inquiry triggers during off-hours. Data is trapped in a lead-gen platform with zero automated handshake. By the time the team manually syncs the lead, the prospect has converted with a systemized competitor."</p>
+                    <div class="pt-6 border-t border-red-500/10">
+                        <span class="text-[9px] font-black text-red-500 uppercase tracking-widest">Risk: Zero Architectural Continuity</span>
+                    </div>
+                </div>
+
+                <!-- Scenario B -->
+                <div class="comparison-card glow-blue border-blue-500/10">
+                    <div class="text-[9px] font-black text-blue-500/50 uppercase tracking-[0.2em] mb-6">Inertia_Debt: Resource_Drain</div>
+                    <p class="text-sm leading-relaxed mb-10 opacity-80">"Disconnected CRM and Project tools force 3 hours of 'Shadow Work' per day. High-level talent is forced into manual data entry, causing systemic operational inertia and a 25% reduction in throughput."</p>
+                    <div class="pt-6 border-t border-blue-500/10">
+                        <span class="text-[9px] font-black text-blue-500 uppercase tracking-widest">Risk: Linear Growth Overhead</span>
+                    </div>
+                </div>
+
+                <!-- Scenario C -->
+                <div class="comparison-card glow-blue border-blue-500/20 ring-1 ring-blue-500/20">
+                    <div class="text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] mb-6">System_Logic: Infinite_Scalability</div>
+                    <p class="text-sm leading-relaxed mb-10 text-white font-medium">"Lead triggers the architectural logic. Instant qualification, automated CRM mapping, and dynamic routing occur in < 60 seconds. Pipeline visibility is absolute. Execution is autonomous."</p>
+                    <div class="pt-6 border-t border-blue-500/20">
+                        <span class="text-[9px] font-black text-blue-400 uppercase tracking-widest">Outcome: Exponential Execution Throughput</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 3. CONTEXT / PROBLEM -->
-    <section id="context" class="py-20 px-6 bg-white/[0.01] relative">
-        <div class="max-w-7xl mx-auto reveal text-left">
-            <div class="pill-label">Why Systems Matter</div>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-10 tracking-tight leading-tight">
-                Growth Does Not Break Businesses.<br/>
-                <span class="text-blue-500 italic">Unstructured Execution Does.</span>
-            </h2>
-            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
-                <p class="text-base md:text-lg text-slate-400 leading-relaxed ripple-item">
-                    Without systems, growth quietly taxes time, decisions, and follow-through. Follow-ups rely on memory. Ownership becomes unclear. Tools exist, but nothing is enforced.
-                </p>
-                <p class="text-base md:text-lg text-slate-400 leading-relaxed font-bold ripple-item">
-                    The result is not failure: it is constant friction.<br/><br/>
-                    <span class="text-blue-400 uppercase tracking-widest text-xs font-bold">My Focus Is On Building Execution Layers That Reduce This Friction.</span>
-                </p>
-            </div>
-        </div>
-    </section>
+    <section class="bg-primary py-24">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-center">
+                <!-- Visual Graph: Friction vs Flow -->
+                <div class="relative h-[300px] md:h-[450px] bg-blue-600/[0.02] border border-blue-500/10 rounded-[3rem] overflow-hidden flex items-center justify-center group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
+                    <!-- Animated Friction Elements -->
+                    <div class="relative w-48 h-48 md:w-64 md:h-64">
+                        <!-- Orbiting 'Chaos' particles -->
+                        <div class="absolute inset-0 border-2 border-dashed border-slate-700/30 rounded-full animate-spin-slow"></div>
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-red-500/40 rounded-full blur-sm animate-pulse"></div>
+                        
+                        <!-- Central 'System' Core -->
+                        <div class="absolute inset-12 border border-blue-500/30 rounded-full flex items-center justify-center bg-slate-900/50 backdrop-blur-xl shadow-[0_0_50px_rgba(37,99,235,0.1)]">
+                            <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center">
+                                <i data-lucide="zap" class="w-8 h-8 text-blue-400"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating 'Execution' Nodes -->
+                        <div class="absolute top-4 right-4 p-3 bg-slate-800 border border-white/5 rounded-xl shadow-2xl animate-bounce-slow">
+                            <div class="w-6 h-1.5 bg-blue-500 rounded-full"></div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 p-3 bg-slate-800 border border-white/5 rounded-xl shadow-2xl animate-bounce-slow" style="animation-delay: 1.5s">
+                            <div class="w-6 h-1.5 bg-red-500/50 rounded-full"></div>
+                        </div>
+                    </div>
+                    <!-- Scanning line -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent -translate-y-full scanner-line"></div>
+                </div>
 
-    <div class="section-divider"></div>
-
-    <!-- 4. SYSTEM ORIENTATION -->
-    <section id="systems" class="py-20 px-6 relative">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center text-left">
-            <div class="reveal">
-                <div class="pill-label">System Overview</div>
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
-                    Execution Built <br/>
-                    <span class="text-blue-500 italic">To Hold Pressure.</span>
-                </h2>
-                <p class="text-lg text-slate-400 leading-relaxed mb-10 ripple-item">
-                    I work on the infrastructure behind acquisition, execution, and retention.<br/><br/>
-                    The Approach Is Simple:<br/>
-                    <span class="text-blue-400 font-bold uppercase tracking-widest text-[10px]">Structure First • Automation Second • Tools Last</span>
-                </p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal stagger-reveal">
-                <div class="bento-card p-8 group ripple-item">
-                    <i data-lucide="target" class="w-6 h-6 text-blue-500 mb-6 transition-transform"></i>
-                    <h4 class="text-white font-bold text-sm mb-3">Acquisition Systems</h4>
-                    <p class="text-[11px] text-slate-500 leading-relaxed">Designing setups that reduce noise, clarify intent, and route demand.</p>
-                </div>
-                <div class="bento-card p-8 group ripple-item">
-                    <i data-lucide="database" class="w-6 h-6 text-blue-500 mb-6 transition-transform"></i>
-                    <h4 class="text-white font-bold text-sm mb-3 text-nowrap">CRM & Lifecycle Structure</h4>
-                    <p class="text-[11px] text-slate-500 leading-relaxed">Lifecycle-driven CRM setup that improves visibility across pipelines.</p>
-                </div>
-                <div class="bento-card p-8 group ripple-item">
-                    <i data-lucide="zap" class="w-6 h-6 text-blue-500 mb-6 transition-transform"></i>
-                    <h4 class="text-white font-bold text-sm mb-3">Behavioral Automation</h4>
-                    <p class="text-[11px] text-slate-500 leading-relaxed">Event-based automation that responds to actions and timing.</p>
-                </div>
-                <div class="bento-card p-8 group ripple-item">
-                    <i data-lucide="refresh-cw" class="w-6 h-6 text-blue-500 mb-6 transition-transform"></i>
-                    <h4 class="text-white font-bold text-sm mb-3">Workflow & Operations</h4>
-                    <p class="text-[11px] text-slate-500 leading-relaxed">Connecting marketing, sales, and retention into one flow.</p>
+                <div class="space-y-8">
+                    <div>
+                        <div class="section-tag">The Growth Friction</div>
+                        <h2 class="mt-4">Stop Leaking Leads to <br/><span class="text-accent italic">Manual Processes.</span></h2>
+                    </div>
+                    <p class="text-lg section-subtext leading-relaxed">
+                        Without systems, growth quietly taxes time, decisions, and follow-through. Follow-ups rely on memory. Ownership becomes unclear. Tools exist, but nothing is enforced.
+                    </p>
+                    <div class="p-8 rounded-[2rem] bg-blue-600/5 border border-blue-500/10 transition-all hover:bg-blue-600/10">
+                        <p class="text-lg font-bold text-bright mb-4">The result is not failure. It is constant friction.</p>
+                        <p class="text-lg text-accent font-medium leading-relaxed mb-0">My focus is on building execution layers that reduce this friction before scale makes it worse.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- 6. PROCESS ARCHITECTURE -->
-    <section id="process" class="py-20 px-6 bg-white/[0.01] relative">
-        <div class="max-w-7xl mx-auto reveal text-left stagger-reveal">
-            <div class="pill-label">Process Architecture</div>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-16 tracking-tight leading-tight">
-                From Lead To Retention <br/>
-                <span class="text-blue-500 italic">Without Improvisation.</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 01</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">Lead Capture <i data-lucide="target" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Structured intake points across forms and landing pages.</p>
+    <!-- 4. INFRASTRUCTURE & PROCESS (The Blueprint) -->
+    <section id="systems" class="bg-tertiary py-24 scroll-mt-24">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-10">
+                    <div>
+                        <div class="section-tag">Infrastructure Blueprints</div>
+                        <h2>Execution built <br/>to hold pressure.</h2>
+                    </div>
+                    <div class="grid gap-6">
+                        <div class="flex gap-6 group">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600/10 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg mb-2">Structural Integrity</h3>
+                                <p class="text-sm text-slate-400 mb-0">Building CRM schemas that enforce data hygiene and stage clarity automatically.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600/10 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <i data-lucide="git-branch" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg mb-2">Logic-Flow Dispatch</h3>
+                                <p class="text-sm text-slate-400 mb-0">Event-based triggers that route leads by intent, score, and operational readiness.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600/10 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg mb-2">Lifecycle Continuity</h3>
+                                <p class="text-sm text-slate-400 mb-0">Connecting acquisition, sales, and retention into a single automated pipeline.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 02</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">Qualification <i data-lucide="filter" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Rule-based classification by intent and readiness.</p>
+                
+                <!-- Stylized Technical Schematic -->
+                <div class="relative bg-slate-900/50 border border-white/5 rounded-[3rem] p-10 overflow-hidden h-[500px] flex items-center justify-center group shadow-2xl">
+                    <div class="absolute inset-0 bg-grid-slate-800/[0.2] [mask-image:linear-gradient(0deg,transparent,black)]"></div>
+                    <div class="relative z-10 w-full space-y-8">
+                        <!-- Node 1 -->
+                        <div class="flex items-center gap-4 transform -translate-x-12 transition-transform group-hover:-translate-x-8">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                                <i data-lucide="arrow-right-circle" class="w-6 h-6 text-blue-400"></i>
+                            </div>
+                            <div class="h-0.5 w-16 bg-gradient-to-r from-blue-500 to-transparent"></div>
+                            <div class="px-4 py-2 bg-slate-800 border border-white/10 rounded-lg text-[10px] font-mono text-blue-400 uppercase tracking-tighter">Entry Trigger</div>
+                        </div>
+                        <!-- Node 2 -->
+                        <div class="flex items-center gap-4 transform translate-x-12 transition-transform group-hover:translate-x-8">
+                            <div class="px-4 py-2 bg-slate-800 border border-white/10 rounded-lg text-[10px] font-mono text-indigo-400 uppercase tracking-tighter">Logic Filter</div>
+                            <div class="h-0.5 w-16 bg-gradient-to-l from-indigo-500 to-transparent"></div>
+                            <div class="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.2)]">
+                                <i data-lucide="filter" class="w-6 h-6 text-indigo-400"></i>
+                            </div>
+                        </div>
+                        <!-- Node 3 -->
+                        <div class="flex items-center gap-4 transform -translate-x-8 transition-transform group-hover:-translate-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+                                <i data-lucide="database" class="w-6 h-6 text-emerald-400"></i>
+                            </div>
+                            <div class="h-0.5 w-16 bg-gradient-to-r from-emerald-500 to-transparent"></div>
+                            <div class="px-4 py-2 bg-slate-800 border border-white/10 rounded-lg text-[10px] font-mono text-emerald-400 uppercase tracking-tighter">CRM Sync</div>
+                        </div>
+                    </div>
+                    <!-- Scanning Beam -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent -translate-y-full scanner-line"></div>
                 </div>
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 03</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">CRM <i data-lucide="database" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Central system maintaining lifecycle state and consistency.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 4.5 TECHNICAL BENCHMARKS (Empirical Proof) -->
+    <section class="bg-primary py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 reveal">
+            <div class="text-center mb-16">
+                <div class="section-tag mx-auto">ROI Projection</div>
+                <h2 class="mt-4">System Performance <br/><span class="text-accent italic">Benchmarks.</span></h2>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                <div class="metric-card">
+                    <div class="metric-value" data-target="85" data-suffix="%">0%</div>
+                    <div class="metric-label">Throughput Lift</div>
                 </div>
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 04</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">Automation <i data-lucide="zap" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Event-triggered workflows executing actions without manual effort.</p>
+                <div class="metric-card">
+                    <div class="metric-value" data-target="60" data-suffix="s">&gt; 1h</div>
+                    <div class="metric-label">Inquiry Latency</div>
                 </div>
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 05</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">Conversion <i data-lucide="check-circle" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Clear handoffs aligned with booking outcomes.</p>
+                <div class="metric-card">
+                    <div class="metric-value" data-target="24" data-suffix="/7">0/7</div>
+                    <div class="metric-label">System Uptime</div>
                 </div>
-                <div class="process-step group ripple-item">
-                    <span class="text-xs font-bold text-blue-400 mb-4 block opacity-40 group-hover:opacity-100 transition-opacity tracking-widest uppercase">Phase 06</span>
-                    <h5 class="text-sm font-bold text-white mb-3 flex items-center justify-between">Retention <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-600 group-hover:text-blue-500"></i></h5>
-                    <p class="text-xs text-slate-500 leading-relaxed">Post-conversion workflows for long-term engagement.</p>
+                <div class="metric-card">
+                    <div class="metric-value" data-target="90" data-suffix="%">0%</div>
+                    <div class="metric-label">Manual Debt Reduction</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. IMPLEMENTATIONS -->
-    <section id="implementations" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto reveal text-left">
-            <div class="pill-label">Implementation Examples</div>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-10 tracking-tight leading-tight">
-                Execution Systems <br/>
-                <span class="text-blue-500 italic text-nowrap">In Practice.</span>
-            </h2>
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div class="space-y-6 ripple-item">
-                    <p class="text-lg text-slate-400 leading-relaxed font-medium">Representative snapshots from internal builds and external implementations.</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4 text-slate-300 font-medium"><i data-lucide="check" class="text-blue-500 w-4"></i> CRM lifecycle setup and stage discipline</li>
-                        <li class="flex items-center gap-4 text-slate-300 font-medium"><i data-lucide="check" class="text-blue-500 w-4"></i> Automated follow-ups and reminders</li>
-                        <li class="flex items-center gap-4 text-slate-300 font-medium"><i data-lucide="check" class="text-blue-500 w-4"></i> Lead routing and internal notifications</li>
-                    </ul>
+    <!-- 5. THE SYSTEM RESOURCE VAULT -->
+    <section id="vault" class="bg-primary py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 reveal">
+            <div class="section-tag">System Resource Vault</div>
+            <h2 class="section-subtext">The Internal Assets.</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <!-- Asset 1: Public -->
+                <div class="bento-card group border-blue-500/5 hover:border-blue-500/20 transition-all duration-500">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
+                            <i data-lucide="list-checks" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-4 py-1.5 rounded-full border border-emerald-500/20">Available</span>
+                    </div>
+                    <h3 class="text-xl text-white mb-3">Lead Engine Checklist</h3>
+                    <p class="text-sm text-slate-400 mb-8 leading-relaxed">The exact infrastructure blueprint for 6-figure pipeline reliability. A 52-point check for CRM health and automated follow-up integrity.</p>
+                    <button id="view-checklist-btn" class="w-full py-4 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 rounded-2xl text-[10px] font-black uppercase tracking-widest text-blue-400 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.1)] flex items-center justify-center">
+                        View Digital Blueprint
+                    </button>
                 </div>
-                <div class="bento-card aspect-video flex items-center justify-center p-8 bg-blue-600/[0.04] border border-blue-500/20 shadow-2xl ripple-item">
-                    <svg width="280" height="180" viewBox="0 0 280 180" class="opacity-40">
-                        <circle cx="40" cy="90" r="15" fill="none" stroke="#3b82f6" stroke-width="2" />
-                        <path d="M 55 90 L 120 40 M 55 90 L 120 140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4" />
-                        <rect x="120" y="25" width="40" height="30" rx="4" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="1.5" />
-                        <rect x="120" y="125" width="40" height="30" rx="4" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-width="1.5" />
-                        <path d="M 160 40 L 220 90 M 160 140 L 220 90" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4" />
-                        <circle cx="235" cy="90" r="15" fill="#3b82f6" fill-opacity="0.3" stroke="#3b82f6" stroke-width="2" />
-                    </svg>
+
+                <!-- Asset 2: Restricted -->
+                <div class="bento-card border-indigo-500/10 group relative overflow-hidden hover:border-indigo-500/40 transition-all duration-500">
+                    <div class="absolute inset-0 bg-indigo-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-600/10 flex items-center justify-center border border-indigo-500/20 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                            <i data-lucide="lock" class="w-7 h-7"></i>
+                        </div>
+                        <span class="text-[9px] font-black uppercase tracking-widest text-indigo-400 bg-indigo-400/10 px-4 py-1.5 rounded-full border border-indigo-400/20">Restricted Access</span>
+                    </div>
+                    <h3 class="text-xl text-white mb-3">Systems That Scale</h3>
+                    <p class="text-sm text-slate-400 mb-8 leading-relaxed">Internal operational manifesto for B2B infrastructure architecture. Designed for high-volume execution and decision clarity.</p>
+                    <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="w-full py-4 bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/30 rounded-2xl text-[10px] font-black uppercase tracking-widest text-indigo-300 transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.1)]">
+                        Request Private Access
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. BEFORE / AFTER -->
-    <section class="py-20 px-6">
-        <div class="max-w-7xl mx-auto reveal text-left">
-            <div class="pill-label">System Impact</div>
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 tracking-tight leading-tight">
-                Transformation <br/>
-                <span class="text-blue-500 italic">Core.</span>
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="before-after-card border-red-500/10 ripple-item">
-                    <h4 class="text-red-500 font-bold uppercase text-[10px] tracking-[0.4em] mb-10 uppercase">Historical Patterns</h4>
-                    <ul class="space-y-6 text-slate-400 text-sm">
-                        <li class="flex items-center gap-4"><span class="w-1 h-1 bg-red-500/40 rounded-full"></span> Follow-ups rely on memory</li>
-                        <li class="flex items-center gap-4"><span class="w-1 h-1 bg-red-500/40 rounded-full"></span> CRM updates happen late</li>
-                        <li class="flex items-center gap-4"><span class="w-1 h-1 bg-red-500/40 rounded-full"></span> Decisions stall in inboxes</li>
-                    </ul>
+
+    <!-- 7. CLIENT SUCCESS PROTOCOLS (Intake Slots) -->
+    <section class="bg-primary py-24 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 reveal">
+            <div class="text-center mb-16">
+                <div class="section-tag mx-auto">Intake Protocol</div>
+                <h2 class="mt-4">Client Success <br/><span class="text-accent italic">Protocols.</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Slot 1 -->
+                <div class="comparison-card glow-blue border-blue-500/20">
+                    <div class="text-[9px] font-black text-blue-400 uppercase tracking-widest mb-6">[ Case_Study_01 ]</div>
+                    <h3 class="text-lg text-white mb-4">Foundation Partner Active</h3>
+                    <p class="text-sm opacity-70 mb-8">System design and deployment in progress. Documenting results for Q2 publication.</p>
+                    <div class="w-full h-1 bg-blue-500/20 rounded-full overflow-hidden">
+                        <div class="w-2/3 h-full bg-blue-500 animate-pulse"></div>
+                    </div>
+                    <div class="mt-4 text-[8px] font-bold text-blue-400 uppercase tracking-widest">Status: Data_Processing_64%</div>
                 </div>
-                <div class="before-after-card border-blue-500/10 ripple-item">
-                    <h4 class="text-blue-500 font-bold uppercase text-[10px] tracking-[0.4em] mb-10 uppercase">Optimized State</h4>
-                    <ul class="space-y-6 text-slate-200 text-sm font-bold">
-                        <li class="flex items-center gap-4"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i> Clear stages reduce chasing</li>
-                        <li class="flex items-center gap-4"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i> Automatic follow-up triggers</li>
-                        <li class="flex items-center gap-4"><i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i> Pipeline visibility improves</li>
-                    </ul>
+                <!-- Slot 2 -->
+                <div class="comparison-card border-white/5 opacity-60">
+                    <div class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-6">[ Case_Study_02 ]</div>
+                    <h3 class="text-lg text-white mb-4">Awaiting Deployment</h3>
+                    <p class="text-sm opacity-70 mb-8">Slot reserved for high-volume intake partner. Strategic audit required.</p>
+                    <button data-cal-link="nitinmishra/30min" class="w-full py-3 border border-white/10 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-white/5 transition-all">Apply for Slot</button>
+                </div>
+                <!-- Slot 3 -->
+                <div class="comparison-card border-white/5 opacity-60">
+                    <div class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-6">[ Case_Study_03 ]</div>
+                    <h3 class="text-lg text-white mb-4">Awaiting Deployment</h3>
+                    <p class="text-sm opacity-70 mb-8">Slot reserved for high-volume intake partner. Strategic audit required.</p>
+                    <button data-cal-link="nitinmishra/30min" class="w-full py-3 border border-white/10 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-white/5 transition-all">Apply for Slot</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. DELIVERY MODEL -->
-    <section id="how-i-work" class="py-20 px-6 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 text-left" id="delivery-section">
-            <div class="lg:col-span-5 space-y-4 reveal text-left stagger-reveal">
-                <div class="pill-label">How I Work</div>
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 tracking-tight leading-tight">
-                    Delivery <br/>
-                    <span class="text-blue-500 italic">Model.</span>
-                </h2>
-                <div data-phase="1" class="phase-card p-6 rounded-[2rem] border border-white/5 cursor-pointer ripple-item">
-                    <h3 class="text-lg font-bold tracking-widest uppercase">Assessment</h3>
-                    <p class="text-slate-400 mt-2 text-sm leading-relaxed phase-desc hidden">Reviewing existing tools, workflows, and execution gaps.</p>
+    <!-- 8. DELIVERY MODEL -->
+    <section id="how-i-work" class="bg-tertiary py-32 relative scroll-mt-24">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12" id="delivery-section">
+            <div class="lg:col-span-12 reveal mb-16">
+                <div class="section-tag">How I Work</div>
+                <h2 class="section-subtext">Delivery Model.</h2>
+            </div>
+            <div class="lg:col-span-5 space-y-4 reveal relative">
+                <!-- System Backbone Line -->
+                <div class="absolute left-5 top-5 bottom-5 w-0.5 bg-slate-800 z-0">
+                    <div id="backbone-progress" class="w-full bg-blue-600 transition-all duration-700 shadow-[0_0_15px_rgba(37,99,235,0.5)]" style="height: 0%"></div>
                 </div>
-                <div data-phase="2" class="phase-card p-6 rounded-[2rem] border border-white/5 cursor-pointer ripple-item">
-                    <h3 class="text-lg font-bold tracking-widest uppercase">System Design</h3>
-                    <p class="text-slate-400 mt-2 text-sm leading-relaxed phase-desc hidden">Designing structure and logic aligned with current operations.</p>
+
+                <div data-phase="1" class="phase-card cursor-pointer active relative z-10">
+                    <div class="flex items-center gap-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-800 transition-all duration-500 phase-icon-box">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="mb-0 text-sm md:text-base">Assessment</h3>
+                    </div>
+                    <p class="mt-4 text-sm mb-0 phase-desc">Reviewing existing tools, workflows, and execution gaps.</p>
                 </div>
-                <div data-phase="3" class="phase-card p-6 rounded-[2rem] border border-white/5 cursor-pointer ripple-item">
-                    <h3 class="text-lg font-bold tracking-widest uppercase">Implementation</h3>
-                    <p class="text-slate-400 mt-2 text-sm leading-relaxed phase-desc hidden">Configuring CRM, automation, and workflows.</p>
+                <div data-phase="2" class="phase-card cursor-pointer relative z-10">
+                    <div class="flex items-center gap-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-800 transition-all duration-500 phase-icon-box">
+                            <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="mb-0 text-sm md:text-base">System Design</h3>
+                    </div>
+                    <p class="mt-4 text-sm mb-0 phase-desc hidden">Designing structure and logic aligned with current operations.</p>
                 </div>
-                <div data-phase="4" class="phase-card p-6 rounded-[2rem] border border-white/5 cursor-pointer ripple-item">
-                    <h3 class="text-lg font-bold tracking-widest uppercase">Validation</h3>
-                    <p class="text-slate-400 mt-2 text-sm leading-relaxed phase-desc hidden">Testing reliability, data accuracy, and triggers.</p>
+                <div data-phase="3" class="phase-card cursor-pointer relative z-10">
+                    <div class="flex items-center gap-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-800 transition-all duration-500 phase-icon-box">
+                            <i data-lucide="settings" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="mb-0 text-sm md:text-base">Implementation</h3>
+                    </div>
+                    <p class="mt-4 text-sm mb-0 phase-desc hidden">Configuring CRM, automation, and workflows.</p>
                 </div>
-                <div data-phase="5" class="phase-card p-6 rounded-[2rem] border border-white/5 cursor-pointer ripple-item">
-                    <h3 class="text-lg font-bold tracking-widest uppercase">Handover</h3>
-                    <p class="text-slate-400 mt-2 text-sm leading-relaxed phase-desc hidden">Documentation for independent management.</p>
+                <div data-phase="4" class="phase-card cursor-pointer relative z-10">
+                    <div class="flex items-center gap-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-800 transition-all duration-500 phase-icon-box">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="mb-0 text-sm md:text-base">Validation</h3>
+                    </div>
+                    <p class="mt-4 text-sm mb-0 phase-desc hidden">Testing reliability, data accuracy, and triggers.</p>
+                </div>
+                <div data-phase="5" class="phase-card cursor-pointer relative z-10">
+                    <div class="flex items-center gap-5">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-800 transition-all duration-500 phase-icon-box">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="mb-0 text-sm md:text-base">Handover</h3>
+                    </div>
+                    <p class="mt-4 text-sm mb-0 phase-desc hidden">Documentation for independent management.</p>
                 </div>
             </div>
-            <div class="lg:col-span-7 sticky top-40 h-[400px] flex items-center justify-center">
-                <div class="bento-card w-full h-full flex flex-col items-center justify-center p-12 text-center border-blue-500/10 shadow-2xl overflow-hidden ripple-item">
+
+            <div class="lg:col-span-7 sticky top-40 h-[400px] lg:h-[600px] reveal flex items-center justify-center">
+                <div class="bento-card w-full h-full flex flex-col items-center justify-center border-blue-500/10 shadow-2xl overflow-hidden">
                     <div class="relative w-48 h-48 mb-8" id="delivery-visual">
                         <div class="absolute inset-0 border-2 border-dashed border-blue-500/20 rounded-full animate-spin-slow"></div>
                         <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent -translate-y-full scanner-line"></div>
@@ -474,209 +593,163 @@
                             <i data-lucide="activity" class="w-16 h-16 text-blue-500 animate-pulse"></i>
                         </div>
                     </div>
-                    <p id="phase-status" class="text-3xl font-bold text-white mb-2 uppercase tracking-tighter">Syncing...</p>
+                    <h3 id="phase-status" class="mb-2 text-white">Syncing System...</h3>
+                    <p id="phase-subtext" class="text-blue-400 font-mono text-[10px] uppercase tracking-widest opacity-60">Ready</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 10. TOOLS & ECOSYSTEM -->
-    <section id="assets" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto reveal text-left stagger-reveal">
-            <div class="pill-label text-left">Tools & Ecosystem</div>
-            <div class="grid lg:grid-cols-2 gap-8 text-left">
-                <div class="bento-card p-10 border-blue-500/20 ripple-item">
-                    <h4 class="text-blue-500 font-bold uppercase text-[10px] mb-8 tracking-widest">Group 1: Core Execution Stack</h4>
-                    <p class="text-[10px] text-slate-500 mb-6 font-bold">(Tools I Confidently Execute)</p>
-                    <div class="flex flex-wrap gap-4 text-xs font-bold text-slate-300">
-                        <span>GoHighLevel</span> • <span>HubSpot CRM</span> • <span>Mailchimp</span> • <span>ManyChat</span> • <span>Zapier</span> • <span>WordPress (Integration & System Layer)</span> • <span>Canva</span>
+    <!-- 9. TOOLS & ECOSYSTEM -->
+    <section id="tools" class="bg-primary py-24 relative overflow-hidden scroll-mt-24">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="section-tag">Tools & Ecosystem</div>
+            <h2 class="section-subtext">Optimized tooling.</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bento-card">
+                    <h3 class="text-accent underline underline-offset-8 decoration-accent/20 mb-3">Core Execution Stack</h3>
+                    <p class="text-[10px] mb-8">(Tools I confidently execute)</p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">Make</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">GoHighLevel</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">HubSpot CRM</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">Zoho CRM</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">Mailchimp</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-300">Zapier</span>
                     </div>
                 </div>
-                <div class="bento-card p-10 border-white/5 ripple-item">
-                    <h4 class="text-slate-400 font-bold uppercase text-[10px] mb-8 tracking-widest">Group 2: Expanding Ecosystem</h4>
-                    <p class="text-[10px] text-slate-500 mb-6 font-bold">(Tools I Am Actively Building Depth In)</p>
-                    <div class="flex flex-wrap gap-4 text-xs font-bold text-slate-500">
-                        <span>Klaviyo</span> • <span>Make (Integromat)</span> • <span>n8n</span>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-8 text-[10px] text-slate-600 italic text-left font-medium">I focus on execution clarity today while deliberately expanding my system architecture depth.</p>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- 11. FIT SIGNALS (RESTORED MISSING POINTS) -->
-    <section class="py-20 px-6 bg-white/[0.01]">
-        <div class="max-w-6xl mx-auto reveal text-left stagger-reveal">
-            <div class="pill-label">When This Makes Sense</div>
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                <div class="ripple-item">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tighter leading-tight">
-                        System <br/><span class="text-blue-500 italic text-nowrap">Signals.</span>
-                    </h2>
-                    <ul class="space-y-4 text-slate-400 text-sm text-left font-medium">
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="alert-triangle" class="text-red-500/40 w-4"></i> Leads exist, but follow-ups feel inconsistent</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="alert-triangle" class="text-red-500/40 w-4"></i> Teams rely on memory instead of systems</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="alert-triangle" class="text-red-500/40 w-4"></i> Tools do not talk to each other</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="alert-triangle" class="text-red-500/40 w-4"></i> Growth feels fragile as volume increases</li>
-                    </ul>
-                </div>
-                <div class="ripple-item">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tighter leading-tight">
-                        Expected <br/><span class="text-blue-500 italic text-nowrap">Outcomes.</span>
-                    </h2>
-                    <ul class="space-y-4 text-slate-200 text-sm font-bold text-left">
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="check" class="text-green-500 w-4"></i> Clear ownership replaces chasing</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="check" class="text-green-500 w-4"></i> Known next actions replace firefighting</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="check" class="text-green-500 w-4"></i> Fewer manual touchpoints</li>
-                        <li class="flex items-center gap-4 text-left"><i data-lucide="check" class="text-green-500 w-4"></i> Better pipeline visibility</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 12. ABOUT (BENTO CARD STYLE - RESTORED LABELS) -->
-    <section id="about" class="py-20 px-6 relative">
-        <div class="max-w-7xl mx-auto reveal text-left">
-            <div class="pill-label">About</div>
-            <div class="bento-card p-12 md:p-16 border-blue-500/10 shadow-2xl text-left ripple-item">
-                <div class="max-w-4xl text-left">
-                    <h2 class="text-2xl md:text-4xl font-bold text-white mb-8 tracking-tight leading-tight">
-                        Execution-Focused <br/>
-                        <span class="text-blue-500 italic text-nowrap">Systems Delivery.</span>
-                    </h2>
-                    <p class="text-lg md:text-xl text-slate-300 leading-relaxed font-medium mb-12 text-left">
-                        Nitin Systems focuses on practical execution systems. I design and implement CRM structures, lifecycle automation, and workflows that reduce manual effort and clarify ownership.
-                    </p>
-                    <div class="flex flex-wrap gap-8 text-blue-400 font-bold uppercase tracking-[0.3em] text-[10px] text-left">
-                        <span class="flex items-center gap-2 ripple-item"><i data-lucide="wind" class="w-3"></i> Calm</span>
-                        <span class="flex items-center gap-2 ripple-item"><i data-lucide="zap" class="w-3"></i> Execution-Focused</span>
-                        <span class="flex items-center gap-2 ripple-item"><i data-lucide="package" class="w-3"></i> Built Deliberately</span>
+                <div class="bento-card">
+                    <h3 class="text-muted underline underline-offset-8 decoration-white/10 mb-3">Expanding Ecosystem</h3>
+                    <p class="text-[10px] mb-8">(Systems & Infrastructure I am actively building depth in)</p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-400">n8n</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-400">LLM Workflow Integration</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-[10px] font-bold text-slate-400">Custom AI Agents</span>
                     </div>
                 </div>
             </div>
+            <p class="mt-10 text-[10px] text-slate-500 italic text-center">I focus on execution clarity today while deliberately expanding system architecture depth.</p>
         </div>
-    </section>
-
-    <!-- 13. FINAL CTA -->
-    <footer id="contact" class="py-32 px-6">
+    </section>    <style>
+        .email-link-elite { color: #ffffff !important; transition: all 0.3s ease; }
+        .email-link-elite:hover { color: #3b82f6 !important; }
+    </style>
+    <!-- 12. FINAL CTA: FOUNDING PARTNER INVITATION -->
+    <section id="contact" class="bg-secondary px-6 py-24">
         <div class="max-w-6xl mx-auto relative group reveal">
-            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-400 rounded-[3rem] blur opacity-25 group-hover:opacity-60 transition duration-1000"></div>
-            <div class="relative bg-[#050812] border border-white/5 rounded-[3rem] p-16 md:p-24 text-center overflow-hidden shadow-2xl">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight uppercase leading-none">
-                    Start With <br/><span class="italic text-blue-500 underline decoration-blue-500/20 underline-offset-8">Structure.</span>
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 rounded-[3.5rem] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+            <div class="relative bg-[#050812] border border-white/5 rounded-[3.5rem] p-16 md:p-24 text-center overflow-hidden glow-gold">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[9px] font-black uppercase tracking-[0.3em] mb-8">
+                    Selective Intake: Founding Partners
+                </div>
+                <h2>
+                    Build the Foundation <br/><span class="italic text-accent underline decoration-blue-500/20 underline-offset-8">of Your Scale.</span>
                 </h2>
-                <p class="text-slate-400 text-lg mb-12 max-w-xl mx-auto font-medium leading-relaxed">
-                    If execution feels harder as growth increases, the issue is rarely effort: it is structure. A system review helps identify what needs to exist.
+                <p class="text-base md:text-lg section-subtext max-w-2xl mx-auto font-medium leading-relaxed mt-6">
+                    I am currently opening **3 positions** for Founding System Partners. I am looking for businesses ready to document a massive shift in operational clarity in exchange for subsidized rates and direct architectural oversight.
                 </p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-10 relative z-10">
-                    <button class="bg-white text-black px-12 py-5 rounded-2xl font-bold hover:bg-blue-600 hover:text-white transition-all transform hover:scale-110 uppercase text-xs tracking-widest shadow-2xl ripple-item">
-                        Review My System
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10 relative z-10 mt-12">
+                    <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="bg-amber-500 text-white px-12 py-5 rounded-2xl font-bold hover:bg-amber-600 transition-all transform hover:scale-105 uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                        Apply for Founding Partnership
                     </button>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest ripple-item">NitinMishraOps@gmail.com</p>
+                    <div class="text-left">
+                        <p class="text-[9px] font-black text-white/50 uppercase tracking-[0.2em] mb-1">Direct Inquiry:</p>
+                        <a href="mailto:NitinMishra.me@outlook.com" class="text-sm email-link-elite font-medium">NitinMishra.me@outlook.com</a>
+                    </div>
+                </div>
+                <!-- Availability indicator -->
+                <div class="mt-12 flex items-center justify-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></div>
+                    <p class="text-[9px] font-black text-amber-500/60 uppercase tracking-[0.2em] mb-0">Current Openings: 3/3 Remaining</p>
                 </div>
             </div>
         </div>
-        <div class="mt-20 text-center text-slate-700 text-[10px] font-bold uppercase border-t border-white/5 pt-12 tracking-[0.5em]">
-            Nitin Systems • Marketing Systems and Automation • Structure-First • Global Remote Delivery
+    </section>
+
+    <!-- Cal element-click embed code begins -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#00008B"},"dark":{"cal-brand":"#3b82f6"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+    <!-- 13. SECURE DOCUMENT MODAL -->
+    <div id="pdf-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 p-4 md:p-8">
+        <div class="absolute inset-0 bg-[#020617]/90 backdrop-blur-xl" id="modal-overlay"></div>
+        
+        <div class="relative w-full max-w-5xl h-full max-h-[85vh] bg-slate-950 border border-white/10 rounded-[2.5rem] shadow-[0_0_50px_rgba(37,99,235,0.15)] flex flex-col overflow-hidden transform scale-95 transition-all duration-500" id="modal-container">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center px-8 py-5 border-b border-white/5 bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">Secure Document: Lead Engine Checklist</span>
+                </div>
+                <button id="close-modal-btn" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-red-500/20 hover:text-red-400 transition-all">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- PDF Viewer -->
+            <div class="flex-grow relative bg-slate-900">
+                <iframe id="pdf-frame" src="" class="w-full h-full border-none"></iframe>
+                <!-- Privacy Overlay (Optional Deterrent) -->
+                <div class="absolute inset-0 pointer-events-none opacity-[0.03] select-none flex items-center justify-center">
+                    <div class="text-[10rem] font-black uppercase tracking-widest rotate-12">Nitin Systems</div>
+                </div>
+            </div>
+
+            <!-- Footer Status -->
+            <div class="px-8 py-3 bg-slate-900/80 border-t border-white/5 flex justify-center">
+                <span class="text-[8px] font-bold text-slate-600 uppercase tracking-widest">Internal System Access | View Only Mode Active</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic -->
+    <!-- 9. FOOTER -->
+    <footer class="footer-midnight py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                <!-- Brand Anchor -->
+                <div class="flex items-center gap-5">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-blue-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                        <div class="relative w-12 h-12 rounded-xl bg-slate-900 border border-blue-500/30 flex items-center justify-center font-black text-blue-400 text-sm shadow-2xl">
+                            NS
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="footer-brand" class="font-black uppercase tracking-[0.4em] text-xs">Nitin Systems</span>
+                        <span class="text-[8px] font-bold text-blue-500/60 uppercase tracking-[0.2em] mt-1">Systems & Automation Specialist</span>
+                    </div>
+                </div>
+                
+                <!-- Copyright notice -->
+                <div class="text-center md:text-right">
+                    <p id="footer-copy" class="text-[9px] font-bold uppercase tracking-[0.3em]">
+                        &copy; Nitin Systems. <span class="opacity-50">All rights reserved, 2026.</span>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script>
-        lucide.createIcons();
+    <!-- 14. SYSTEMS CONCIERGE WIDGET -->
+    <div class="concierge-widget">
+        <div class="concierge-menu" id="concierge-menu">
+            <a href="https://wa.me/919756954125" target="_blank" class="concierge-item">
+                <span>Connect on WhatsApp</span>
+                <i data-lucide="message-circle"></i>
+            </a>
+            <a href="mailto:NitinMishra.me@outlook.com" class="concierge-item">
+                <span>Direct Email Inquiry</span>
+                <i data-lucide="mail"></i>
+            </a>
+        </div>
+        <button class="concierge-btn" id="concierge-btn" aria-label="Open Systems Concierge">
+            <i data-lucide="message-square-more"></i>
+        </button>
+    </div>
 
-        // Flashlight & Local Hover Tracking
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            document.documentElement.style.setProperty('--mouse-x', `${x}px`);
-            document.documentElement.style.setProperty('--mouse-y', `${y}px`);
-            
-            document.querySelectorAll('.bento-card, .process-step, .before-after-card').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                el.style.setProperty('--local-x', `${x - rect.left}px`);
-                el.style.setProperty('--local-y', `${y - rect.top}px`);
-            });
-        });
-
-        // Dynamic Wave Flow Logic
-        window.addEventListener('scroll', () => {
-            const scroll = window.pageYOffset;
-            document.documentElement.style.setProperty('--scroll-y', scroll);
-            
-            const navbar = document.getElementById('navbar');
-            if (scroll > 40) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Ripple Reveal Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active'); 
-                    
-                    const ripples = entry.target.querySelectorAll('.ripple-item');
-                    ripples.forEach((item, index) => {
-                        item.style.transitionDelay = `${index * 0.15}s`;
-                        item.style.opacity = "1";
-                        item.style.transform = "translateY(0)";
-                    });
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Delivery Model Logic
-        let currentPhase = 1;
-        const totalPhases = 5;
-        let loopInterval = null;
-
-        const phaseData = {
-            1: { title: 'Assessment', icon: 'search' },
-            2: { title: 'Design', icon: 'pen-tool' },
-            3: { title: 'Implementation', icon: 'settings' },
-            4: { title: 'Validation', icon: 'shield-check' },
-            5: { title: 'Handover', icon: 'book-open' }
-        };
-
-        function updatePhase(p) {
-            document.querySelectorAll('[data-phase]').forEach(c => {
-                const stepNum = parseInt(c.getAttribute('data-phase'));
-                const isActive = stepNum === p;
-                c.classList.toggle('active', isActive);
-                const desc = c.querySelector('.phase-desc');
-                if(desc) desc.classList.toggle('hidden', !isActive);
-            });
-            const status = document.getElementById('phase-status');
-            if(status) status.innerText = phaseData[p].title;
-            const container = document.getElementById('phase-icon-container');
-            if(container) container.innerHTML = `<i data-lucide="${phaseData[p].icon}" class="w-16 h-16 text-blue-500 animate-pulse"></i>`;
-            lucide.createIcons();
-        }
-
-        const deliverySection = document.getElementById('delivery-section');
-        const deliveryObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) { 
-                currentPhase = 1; 
-                updatePhase(currentPhase);
-                if (!loopInterval) {
-                    loopInterval = setInterval(() => { 
-                        currentPhase = currentPhase >= totalPhases ? 1 : currentPhase + 1; 
-                        updatePhase(currentPhase); 
-                    }, 3000);
-                }
-            } else { 
-                clearInterval(loopInterval); 
-                loopInterval = null; 
-            }
-        }, { threshold: 0.5 });
-        deliveryObserver.observe(deliverySection);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
