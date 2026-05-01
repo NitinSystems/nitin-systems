@@ -42,10 +42,10 @@
     <!-- 1. NAVIGATION -->
     <nav id="navbar"
         class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[94%] max-w-7xl rounded-3xl border border-transparent py-3 md:py-4 px-6 bg-[#050812]/90 backdrop-blur-md shadow-2xl">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center relative h-full">
+            <!-- Brand Anchor -->
             <div class="flex items-center gap-4 cursor-pointer group"
                 onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <!-- Premium NS Monogram Logo -->
                 <div class="relative group">
                     <div
                         class="absolute -inset-1 bg-blue-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500">
@@ -59,9 +59,9 @@
                     SYSTEMS</span>
             </div>
 
-            <!-- Desktop Links -->
+            <!-- Desktop Links (Centered on 'Center Line') -->
             <div
-                class="hidden lg:flex items-center gap-6 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+                class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
                 <a href="#about" class="hover:text-blue-400 transition-colors">The Architect</a>
                 <a href="#systems" class="hover:text-blue-400 transition-colors">Blueprints</a>
                 <a href="#how-i-work" class="hover:text-blue-400 transition-colors">Delivery</a>
@@ -70,6 +70,8 @@
                     <i data-lucide="moon" class="w-4 h-4 moon-icon hidden"></i>
                 </button>
             </div>
+
+            <!-- CTA Anchor -->
             <div class="hidden lg:flex items-center gap-4">
                 <button id="nav-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
                     data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
@@ -852,14 +854,14 @@
     </style>
     <!-- 12. FINAL CTA: FOUNDING PARTNER INVITATION -->
     <section id="contact" class="bg-secondary px-6 py-24">
-        <div class="max-w-5xl mx-auto relative group reveal">
+        <div class="max-w-6xl mx-auto relative group reveal">
             <div
                 class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 rounded-[3.5rem] blur opacity-10 group-hover:opacity-30 transition duration-1000">
             </div>
             <div
-                class="relative bg-[#050812] border border-white/5 rounded-[3.5rem] p-16 md:p-24 text-center lg:text-left overflow-hidden glow-gold">
+                class="relative bg-[#050812] border border-white/5 rounded-[3.5rem] p-16 md:p-24 text-center overflow-hidden glow-gold">
                 <div
-                    class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[9px] font-black uppercase tracking-[0.3em] mb-8 mx-auto lg:mx-0">
+                    class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[9px] font-black uppercase tracking-[0.3em] mb-8">
                     Selective Intake: Founding Partners
                 </div>
                 <h2>
@@ -867,18 +869,18 @@
                         class="italic text-accent underline decoration-blue-500/20 underline-offset-8">of Your
                         Scale.</span>
                 </h2>
-                <p class="text-base md:text-lg section-subtext max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed mt-6">
+                <p class="text-base md:text-lg section-subtext max-w-2xl mx-auto font-medium leading-relaxed mt-6">
                     I am currently opening <strong>3 positions</strong> for Founding System Partners. I am looking for businesses
                     ready to document a massive shift in operational clarity in exchange for subsidized rates and direct
                     architectural oversight.
                 </p>
-                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 relative z-10 mt-12">
+                <div class="flex flex-col items-center justify-center gap-10 relative z-10 mt-12">
                     <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
                         data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                        class="bg-amber-500 text-white px-12 py-5 rounded-2xl font-bold hover:bg-amber-600 transition-all transform hover:scale-105 uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(245,158,11,0.2)] w-full lg:w-auto">
+                        class="bg-amber-500 text-white px-12 py-5 rounded-2xl font-bold hover:bg-amber-600 transition-all transform hover:scale-105 uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(245,158,11,0.2)]">
                         Apply for Founding Partnership
                     </button>
-                    <div class="text-left lg:text-right">
+                    <div class="text-center">
                         <p class="text-[9px] font-black text-white/50 uppercase tracking-[0.2em] mb-1">Direct Inquiry:
                         </p>
                         <a href="mailto:NitinMishra.me@outlook.com"
