@@ -10,7 +10,7 @@
     <meta name="author" content="Nitin Systems">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon_elite.png">
+    <link rel="icon" type="image/png" href="assets/images/nitin_systems_master_logo.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,20 +34,7 @@
             text-align: center;
             background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
         }
-        .success-monogram {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            border-radius: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #3b82f6;
-            font-weight: 900;
-            font-size: 1.5rem;
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+        .animate-bounce-in {
             animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         @keyframes bounceIn {
@@ -64,9 +51,9 @@
     <nav id="navbar" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[94%] max-w-7xl rounded-3xl border border-transparent py-3 px-6 bg-[#050812]/90 backdrop-blur-md shadow-2xl">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
-                <div class="relative w-10 h-10 rounded-xl bg-slate-900 border border-blue-500/30 flex items-center justify-center font-black text-blue-400 text-[10px] shadow-xl">
-                    NS
-                </div>
+                <img src="assets/images/nitin_systems_master_logo.png" 
+                     alt="Nitin Systems" 
+                     class="w-10 h-10 rounded-xl border border-blue-500/30 shadow-xl">
                 <span class="hidden sm:block font-black tracking-[0.3em] text-white uppercase text-[10px]">NITIN SYSTEMS</span>
             </div>
             <button id="theme-toggle" class="text-slate-400 hover:text-white transition-colors" aria-label="Toggle Theme">
@@ -78,7 +65,9 @@
 
     <div class="thank-you-container">
         <div class="max-w-2xl w-full bento-card reveal active">
-            <div class="success-monogram">NS</div>
+            <img src="assets/images/nitin_systems_master_logo.png" 
+                 alt="Success" 
+                 class="w-24 h-24 rounded-3xl mx-auto mb-8 border border-blue-500/30 shadow-[0_0_40px_rgba(59,130,246,0.2)] animate-bounce-in">
             
             <div class="section-tag justify-center mx-auto mb-6">Security Clearance: Verified</div>
             <h1 class="text-white text-4xl font-black mb-6 tracking-tight">Audit Confirmed.</h1>
