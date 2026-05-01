@@ -311,6 +311,13 @@ footer {
     animation: shine 5s linear infinite;
 }
 
+body.light-theme .text-animate-gradient {
+    background: linear-gradient(to right, #1e40af, #3b82f6, #1e40af, #1e40af) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
 @keyframes shine {
     to {
         background-position: 200% center;
