@@ -535,12 +535,11 @@ body.light-theme .before-after-card:hover {
 
 /* --- LIGHT THEME OVERRIDES --- */
 body.light-theme {
-    background-color: var(--bg-primary);
+    --bg-primary: #f8fafc;
     --card-bg: rgba(255, 255, 255, 0.7);
     --text-main: #334155;
     --text-muted: #64748b;
     --text-bright: #0f172a;
-    background-color: var(--bg-dark);
 }
 
 body.light-theme {
