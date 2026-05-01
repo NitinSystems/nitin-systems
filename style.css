@@ -248,6 +248,58 @@ body.light-theme .section-architect {
     width: 100%;
 }
 
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- ELITE GLASS NAVBAR & GHOSTLY TRACE --- */
+#navbar {
+    background: rgba(5, 8, 18, 0.7) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    overflow: hidden;
+}
+
+body.light-theme #navbar {
+    background: rgba(212, 232, 250, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 10px 30px -10px rgba(186, 218, 245, 0.3) !important;
+}
+
+/* The Ghostly Trace Animation */
+#navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1.5px; /* Border thickness */
+    border-radius: inherit;
+    background: conic-gradient(from var(--nav-angle, 0deg), transparent 70%, #3b82f6 90%, transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+#navbar.navbar-scrolled::before {
+    opacity: 0.4;
+    animation: navRotate 4s linear infinite;
+}
+
+@keyframes navRotate {
+    from { --nav-angle: 0deg; }
+    to { --nav-angle: 360deg; }
+}
+
+/* Support for older browsers without @property */
+@property --nav-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 /* --- LOCKED SECTION PADDING --- */
 section,
 footer {
