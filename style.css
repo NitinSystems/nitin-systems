@@ -12,6 +12,12 @@
     --text-main: #cbd5e1;
     --text-muted: #94a3b8;
     --text-bright: #ffffff;
+    
+    /* Text Glow Variables */
+    --glow-1: #3b82f6;
+    --glow-2: #818cf8;
+    --glow-3: #ffffff;
+    --glow-4: #3b82f6;
 
     /* Typography Scale */
     --h1-size: clamp(2rem, 4.5vw, 3rem);
@@ -303,7 +309,7 @@ footer {
 }
 
 .text-animate-gradient {
-    background: linear-gradient(to right, #3b82f6, #818cf8, #ffffff, #3b82f6);
+    background: linear-gradient(to right, var(--glow-1), var(--glow-2), var(--glow-3), var(--glow-4));
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -312,7 +318,13 @@ footer {
 }
 
 body.light-theme .text-animate-gradient {
-    background: linear-gradient(to right, #1e40af, #3b82f6, #1e40af, #1e40af) !important;
+    /* Sapphire Blue Override Logic */
+    --glow-1: #1e40af;
+    --glow-2: #3b82f6;
+    --glow-3: #1e40af;
+    --glow-4: #1e40af;
+    animation: none; /* Kill animation for maximum sharpness in light mode */
+    background: linear-gradient(to right, var(--glow-1), var(--glow-2), var(--glow-3));
     -webkit-background-clip: text !important;
     background-clip: text !important;
     color: transparent !important;
