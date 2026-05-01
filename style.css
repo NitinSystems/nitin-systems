@@ -1145,7 +1145,7 @@ body.light-theme .glow-gold {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-[9px];
+    font-size: 9px;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.3em;
