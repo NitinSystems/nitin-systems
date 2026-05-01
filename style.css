@@ -330,8 +330,9 @@ body.light-theme .text-animate-gradient {
     --glow-2: #3b82f6;
     --glow-3: #1e40af;
     --glow-4: #1e40af;
-    animation: none; /* Kill animation for maximum sharpness in light mode */
-    background: linear-gradient(to right, var(--glow-1), var(--glow-2), var(--glow-3));
+    animation: shine 5s linear infinite !important; 
+    background: linear-gradient(to right, var(--glow-1), var(--glow-2), var(--glow-3), var(--glow-4)) !important;
+    background-size: 200% auto !important;
     -webkit-background-clip: text !important;
     background-clip: text !important;
     color: transparent !important;
