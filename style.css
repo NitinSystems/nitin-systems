@@ -193,11 +193,7 @@ body.light-theme {
     color: #64748b !important;
 }
 
-#navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
-}
+
 
 .section-tag {
     display: inline-flex;
@@ -252,18 +248,19 @@ body.light-theme .section-architect {
     width: 100%;
 }
 
-/* --- ELITE GLASS NAVBAR & GHOSTLY TRACE --- */
+/* --- ELITE GLASS NAVBAR & BREATHING GLOSS --- */
 #navbar {
-    background: rgba(15, 23, 42, 0.5) !important; /* Smoked Obsidian Glass */
+    background: rgba(15, 23, 42, 0.4) !important; /* Obsidian Glass */
     backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.light-theme #navbar {
-    background: rgba(232, 244, 255, 0.98) !important; /* Sky Blue: #d4e8fa */
-    border: 1px solid rgba(59, 130, 246, 0.2) !important;
-    box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.25) !important;
+    background: rgba(212, 232, 250, 0.8) !important; /* Your #d4e8fa Sky Blue Tint */
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.1) !important;
 }
 
 /* The Ghostly Trace Animation */
@@ -271,7 +268,7 @@ body.light-theme #navbar {
     content: '';
     position: absolute;
     inset: 0;
-    padding: 1.5px; /* Border thickness */
+    padding: 1.5px;
     border-radius: inherit;
     background: conic-gradient(from var(--nav-angle, 0deg), transparent 70%, #3b82f6 90%, transparent 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -283,9 +280,24 @@ body.light-theme #navbar {
     transition: opacity 0.8s ease;
 }
 
+#navbar.navbar-scrolled {
+    animation: navbarPulse 4s infinite ease-in-out !important;
+}
+
 #navbar.navbar-scrolled::before {
-    opacity: 0.4;
+    opacity: 0.3;
     animation: navRotate 4s linear infinite;
+}
+
+@keyframes navbarPulse {
+    0%, 100% { 
+        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.1); 
+        border-color: rgba(59, 130, 246, 0.1);
+    }
+    50% { 
+        box-shadow: 0 15px 45px -5px rgba(59, 130, 246, 0.4); 
+        border-color: rgba(59, 130, 246, 0.4);
+    }
 }
 
 @keyframes navRotate {
@@ -293,7 +305,6 @@ body.light-theme #navbar {
     to { --nav-angle: 360deg; }
 }
 
-/* Support for older browsers without @property */
 @property --nav-angle {
     syntax: '<angle>';
     initial-value: 0deg;
