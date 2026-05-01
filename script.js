@@ -330,4 +330,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- NAVBAR SCROLL ACTIVATION ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }, { passive: true });
 });
