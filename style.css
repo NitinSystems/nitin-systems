@@ -222,6 +222,10 @@ body.light-theme {
     }
 }
 
+body.light-theme .section-architect {
+    background-color: var(--bg-architect) !important;
+}
+
 /* --- LOCKED SECTION PADDING --- */
 section,
 footer {
@@ -557,7 +561,10 @@ body.light-theme .before-after-card:hover {
 
 /* --- LIGHT THEME OVERRIDES --- */
 body.light-theme {
-    --bg-primary: #f8fafc;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-architect: #d4e8fa;
     --card-bg: rgba(255, 255, 255, 0.7);
     --text-main: #334155;
     --text-muted: #64748b;
@@ -1191,4 +1198,32 @@ body.light-theme .glow-gold {
 .light-theme .section-tag::before {
     background: #1e40af;
     box-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
+}
+
+/* --- DELIVERY MODEL FINAL POLISH --- */
+body.light-theme .phase-card.active .phase-icon-box {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+
+body.light-theme .phase-card.active i {
+    color: #ffffff !important;
+}
+
+#delivery-section .bento-card {
+    max-height: 500px !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body.dark-theme #delivery-section .bento-card {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 0 50px rgba(37, 99, 235, 0.15);
+}
+
+/* Fix for Heading clipping into Navbar */
+#how-i-work {
+    scroll-margin-top: 120px !important;
 }
