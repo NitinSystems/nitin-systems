@@ -122,16 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deliveryObserver.observe(deliverySection);
     }
 
-    // --- NAVBAR SCROLL EFFECT ---
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (!navbar) return;
-        if (window.scrollY > 40) {
-            navbar.classList.add('bg-black/80', 'backdrop-blur-2xl', 'border-white/10');
-        } else {
-            navbar.classList.remove('bg-black/80', 'backdrop-blur-2xl', 'border-white/10');
-        }
-    });
+
 
     // --- CALENDAR LOGIC ---
     // Cal.com handles the booking flow internally via the injected script in index.html.
