@@ -832,56 +832,19 @@ body.light-theme .before-after-card.border-green-500\/10 {
     border-color: rgba(34, 197, 94, 0.2) !important;
 }
 
-/* Elite Navbar in Light Mode - Blue Stained Glass Effect */
-body.light-theme nav#navbar {
-    background-color: rgba(37, 99, 235, 0.8) !important;
-    backdrop-filter: blur(15px) saturate(180%) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.5) !important;
+/* --- MASTER NAVBAR SYSTEM (Blue Stained Glass) --- */
+nav#navbar {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body.light-theme nav#navbar .nav-link,
-body.light-theme nav#navbar .text-slate-400,
-body.light-theme nav#navbar #theme-toggle,
-body.light-theme nav#navbar #mobile-menu-btn {
-    color: #ffffff !important;
-}
-
-body.light-theme nav#navbar .bg-white {
-    background-color: #ffffff !important;
-    color: #2563eb !important;
-}
-
-body.light-theme nav#navbar .text-blue-500 {
-    color: #ffffff !important; /* Ensure NS logo is white on blue */
-}
-
-body.light-theme .shadow-2xl {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1) !important;
-}
 
 /* Section Rhythm - Distinct Alternating Backgrounds */
 body.light-theme .section-alt {
     background-color: #f8fafc !important;
-    /* Premium Slate-50 Tint */
     border-top: 1px solid #f1f5f9;
     border-bottom: 1px solid #f1f5f9;
     position: relative;
     z-index: 1;
-}
-
-/* Navbar Elevation for Light Mode - Higher Visibility */
-body.light-theme nav#navbar {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(25px) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 0 rgba(0, 0, 0, 0.02) !important;
-    border: 1px solid rgba(0, 0, 0, 0.04) !important;
-}
-
-body.light-theme #navbar span,
-body.light-theme #navbar a {
-    color: #1e293b !important;
-    /* Ensure text is readable */
 }
 
 
@@ -1339,64 +1302,53 @@ body.dark-theme #delivery-section .bento-card {
 }
 
 /* --- FINAL AUTHORITY: ELITE GLASS NAVBAR & BREATHING GLOSS --- */
-#navbar {
-    background: rgba(15, 23, 42, 0.4) !important; /* Obsidian Glass */
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    overflow: hidden;
+/* --- MASTER NAVBAR SYSTEM (Blue Stained Glass) --- */
+/* This is the final authority for the Navbar. DO NOT override. */
+
+nav#navbar {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(15, 23, 42, 0.8); /* Default Dark */
+    backdrop-filter: blur(16px);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
-body.light-theme #navbar {
-    background: rgba(212, 232, 250, 0.85) !important; /* Your #d4e8fa Sky Blue Tint */
-    border: 1px solid rgba(255, 255, 255, 0.8) !important;
-    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15) !important;
+/* LIGHT MODE - THE JET SUIT (Blue Stained Glass) */
+body.light-theme nav#navbar {
+    background-color: rgba(37, 99, 235, 0.85) !important;
+    backdrop-filter: blur(25px) saturate(200%) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.5) !important;
 }
 
-/* The Ghostly Trace Animation */
-#navbar::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 1.5px;
-    border-radius: inherit;
-    background: conic-gradient(from var(--nav-angle, 0deg), transparent 70%, #3b82f6 90%, transparent 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.8s ease;
+/* Content Contrast (Always White on Dark or Blue) */
+#navbar .nav-link,
+#navbar .text-slate-400,
+#navbar #theme-toggle,
+#navbar #mobile-menu-btn,
+#navbar .text-blue-500,
+#navbar span {
+    color: #ffffff !important;
 }
 
+/* CTA Button Adapts to Background */
+#navbar .bg-white,
+#navbar .bg-slate-900 {
+    background-color: #ffffff !important;
+    color: #2563eb !important;
+}
+
+/* Breathing Gloss Animation on Scroll */
 #navbar.navbar-scrolled {
     animation: navbarPulse 4s infinite ease-in-out !important;
 }
 
-#navbar.navbar-scrolled::before {
-    opacity: 0.3;
-    animation: navRotate 4s linear infinite;
-}
-
 @keyframes navbarPulse {
     0%, 100% { 
-        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15); 
-        border-color: rgba(59, 130, 246, 0.15);
+        box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.4); 
+        border-color: rgba(255, 255, 255, 0.3);
     }
     50% { 
-        box-shadow: 0 15px 45px -5px rgba(59, 130, 246, 0.4); 
-        border-color: rgba(59, 130, 246, 0.4);
+        box-shadow: 0 15px 45px -5px rgba(37, 99, 235, 0.8); 
+        border-color: rgba(255, 255, 255, 0.5);
     }
-}
-
-@keyframes navRotate {
-    from { --nav-angle: 0deg; }
-    to { --nav-angle: 360deg; }
-}
-
-@property --nav-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
 }
