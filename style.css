@@ -1337,24 +1337,33 @@ body.light-theme #navbar .text-slate-400,
 body.light-theme #navbar #theme-toggle,
 body.light-theme #navbar #mobile-menu-btn,
 body.light-theme #navbar .text-blue-500,
-body.light-theme #navbar span {
-    color: #172554 !important; /* Deep Sapphire for Brutal Clarity */
+body.light-theme #navbar span:not(.cta-text) {
+    color: #172554 !important; /* Deep Sapphire */
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
 }
 
-/* CTA Button - Force High Contrast */
-#navbar .bg-white,
-#navbar .bg-slate-900 {
-    background-color: #ffffff !important;
-    color: #2563eb !important;
+/* CTA Button - Elite Hardware Aesthetic */
+body.light-theme #navbar .bg-white,
+body.light-theme #navbar .bg-slate-900 {
+    background-color: #172554 !important; /* Deep Sapphire Base */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Force White Text inside CTA */
+body.light-theme #navbar .bg-white span,
+body.light-theme #navbar .bg-slate-900 span,
+body.light-theme #navbar #nav-cta,
+body.light-theme #navbar #nav-cta span {
+    color: #ffffff !important;
     font-weight: 700 !important;
 }
 
-body.light-theme #navbar .bg-white,
-body.light-theme #navbar .bg-slate-900 {
-    background-color: #172554 !important; /* Dark Button for Light Theme */
-    color: #ffffff !important;
+/* Logo "NS" Refinement */
+body.light-theme #navbar .bg-slate-900:first-child {
+    background-color: #0f172a !important; /* Keep logo dark for punch */
+    border: 1px solid rgba(37, 99, 235, 0.3) !important; /* Blue Glow Border */
 }
 
 /* Breathing Gloss Animation on Scroll */
