@@ -46,6 +46,19 @@
     </style>
 </head>
 <body class="bg-[#0f172a] transition-colors duration-500">
+    <script>
+        /**
+         * EMERGENCY THEME ENGINE (Blocking)
+         * Prevents "Flash of Dark Theme" (FODT) by applying the saved theme 
+         * before the browser paints the first pixel of the body.
+         */
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        })();
+    </script>
 
     <!-- MINIMAL NAV FOR THANK YOU PAGE -->
     <nav id="navbar" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] max-w-7xl rounded-3xl border border-transparent py-3 px-6 shadow-2xl">
@@ -104,9 +117,15 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Initialize from LocalStorage
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        setTheme(savedTheme);
+        // Initial icon sync (Theme is already applied by blocking script)
+        const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+        if (currentTheme === 'light') {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
 
         themeToggle.addEventListener('click', () => {
             const isLight = document.body.classList.contains('light-theme');
