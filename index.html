@@ -972,7 +972,76 @@
     </div>
 
     <!-- Main Logic -->
-    <!-- 9. FOOTER -->
+    <!-- 14. LEAD CAPTURE SYSTEM (The Audit Request) -->
+    <section id="contact-form" class="py-24 px-6 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative group">
+                <!-- Background Glow -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-[3rem] blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+                
+                <div class="relative bg-white/5 dark:bg-slate-900/40 backdrop-blur-3xl p-8 md:p-16 rounded-[3rem] border border-white/10 shadow-2xl">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight dark:text-white light:text-[#172554]">
+                                Let's Architect <span class="text-blue-500">Your Growth.</span>
+                            </h2>
+                            <p class="text-slate-400 text-lg mb-8">
+                                Ready to stop leaking leads to manual chaos? Send me a diagnostic brief and I'll build the blueprint.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 text-slate-300">
+                                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500"></i>
+                                    </div>
+                                    <span class="text-sm font-bold uppercase tracking-widest">Diagnostic Audit Ready</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-slate-300">
+                                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500"></i>
+                                    </div>
+                                    <span class="text-sm font-bold uppercase tracking-widest">CRM Blueprint Included</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CUSTOM WEBHOOK FORM -->
+                        <form id="audit-form" class="space-y-4">
+                            <div class="space-y-1">
+                                <input type="text" name="name" placeholder="Full Name" required
+                                    class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500">
+                            </div>
+                            <div class="space-y-1">
+                                <input type="email" name="email" placeholder="Work Email" required
+                                    class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500">
+                            </div>
+                            <div class="space-y-1">
+                                <textarea name="message" placeholder="What is your biggest system bottleneck?" rows="4" required
+                                    class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500"></textarea>
+                            </div>
+                            <button type="submit" id="submit-btn"
+                                class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 font-black uppercase tracking-widest py-5 rounded-2xl shadow-xl shadow-orange-500/20 hover:scale-[1.02] transition-transform active:scale-95">
+                                Send Audit Request
+                            </button>
+                            <p class="text-[10px] text-center text-slate-500 uppercase tracking-widest mt-4">
+                                NO COMMITMENT. JUST A 15-MIN DIAGNOSTIC.
+                            </p>
+                        </form>
+
+                        <!-- Success State -->
+                        <div id="form-success" class="hidden text-center py-12">
+                            <div class="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-lucide="zap" class="w-10 h-10 text-blue-500"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-white mb-2 uppercase tracking-widest">Systems Triggered!</h3>
+                            <p class="text-slate-400">I've received your data. Expect a diagnostic brief within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15. FOOTER (Branding & Final Authority) -->
     <footer class="footer-midnight py-20 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12">
