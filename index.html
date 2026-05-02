@@ -127,26 +127,38 @@
         </div>
     </nav>
 
-    <!-- MOBILE MENU OVERLAY -->
+    <!-- MOBILE MENU OVERLAY (Elite Right-Side Drawer) -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-[#0f172a]/95 backdrop-blur-lg z-[60] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-500">
-        <button id="close-menu-btn" class="absolute top-10 right-8 text-white">
+        class="fixed top-0 right-0 bottom-0 w-[80%] max-w-[400px] bg-slate-900/60 backdrop-blur-2xl z-[60] flex flex-col justify-center items-start px-12 gap-8 translate-x-full transition-transform duration-500 border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]">
+        
+        <button id="close-menu-btn" class="absolute top-10 right-8 text-white/50 hover:text-white transition-colors">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="#systems"
-            class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Systems</a>
-        <a href="#process"
-            class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Process
-            Architecture</a>
-        <a href="#how-i-work"
-            class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">How
-            I Work</a>
-        <a href="#about"
-            class="mobile-link text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">About</a>
+
+        <div class="flex flex-col gap-8 w-full">
+            <a href="#systems" class="mobile-link group flex items-center gap-4">
+                <span class="text-[10px] font-black text-blue-500/50 group-hover:text-blue-400 transition-colors">01</span>
+                <span class="text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Systems</span>
+            </a>
+            <a href="#process" class="mobile-link group flex items-center gap-4">
+                <span class="text-[10px] font-black text-blue-500/50 group-hover:text-blue-400 transition-colors">02</span>
+                <span class="text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Architecture</span>
+            </a>
+            <a href="#how-i-work" class="mobile-link group flex items-center gap-4">
+                <span class="text-[10px] font-black text-blue-500/50 group-hover:text-blue-400 transition-colors">03</span>
+                <span class="text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">Delivery</span>
+            </a>
+            <a href="#about" class="mobile-link group flex items-center gap-4">
+                <span class="text-[10px] font-black text-blue-500/50 group-hover:text-blue-400 transition-colors">04</span>
+                <span class="text-2xl font-black text-white uppercase tracking-widest hover:text-blue-400 transition-colors">About</span>
+            </a>
+        </div>
+
         <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            class="mobile-link mt-8 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black shadow-xl uppercase tracking-widest text-sm">GET
-            A SYSTEM REVIEW</button>
+            class="mobile-link mt-8 w-full bg-blue-600 text-white px-8 py-4 rounded-2xl font-black shadow-xl uppercase tracking-widest text-sm text-center">
+            GET A SYSTEM REVIEW
+        </button>
     </div>
 
     <!-- 2. HERO SECTION -->
@@ -370,7 +382,7 @@
     </section>
 
     <!-- 3.5 SCENARIO MODELING (The Logic Proof) -->
-    <section class="bg-secondary py-24 border-y border-white/5">
+    <section id="process" class="bg-secondary py-24 border-y border-white/5 scroll-mt-24">
         <div class="max-w-7xl mx-auto px-6 reveal">
             <div class="text-center lg:text-left mb-16">
                 <div class="section-tag mx-auto lg:mx-0">Scenario Modeling</div>
