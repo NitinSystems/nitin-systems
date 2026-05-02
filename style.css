@@ -115,7 +115,20 @@ body.light-theme .about-bg-grid {
 }
 
 body.light-theme .vault-bg-depth {
-    background: #f8fafc; /* Keep light mode vault clean and subtle */
+    background: #ffffff;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0) !important;
+    background-size: 24px 24px;
+}
+
+/* Narrow Section Dot Texture */
+.section-dot-texture {
+    opacity: 0.1;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+body.light-theme .section-dot-texture {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px) !important;
 }
 
 /* Base Styles */
