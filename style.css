@@ -1307,21 +1307,12 @@ body.dark-theme #delivery-section .bento-card {
 
 nav#navbar {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: rgba(15, 23, 42, 0.8); /* Default Dark */
+    background-color: rgba(15, 23, 42, 0.8); /* Default Dark Mode */
     backdrop-filter: blur(16px);
-    border: none !important; /* Removed Dark Mode Border */
+    border: none !important;
 }
 
-/* LIGHT MODE - THE JET SUIT (Prism Liquid Glass) */
-body.light-theme nav#navbar {
-    background-color: rgba(37, 99, 235, 0.4) !important; /* High Transparency Blue */
-    backdrop-filter: blur(30px) saturate(250%) !important; /* Liquid Shine */
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.3), 
-                inset 0 0 20px rgba(255, 255, 255, 0.3) !important; /* Internal Prism Shine */
-}
-
-/* Content Contrast (Always White on Dark or Blue) */
+/* Dark Mode Text Colors (Default) */
 #navbar .nav-link,
 #navbar .text-slate-400,
 #navbar #theme-toggle,
@@ -1331,11 +1322,39 @@ body.light-theme nav#navbar {
     color: #ffffff !important;
 }
 
-/* CTA Button Adapts to Background */
+/* LIGHT MODE - THE JET SUIT (Sapphire Ink on Glass) */
+body.light-theme nav#navbar {
+    background-color: rgba(37, 99, 235, 0.4) !important; /* Transparent Blue */
+    backdrop-filter: blur(30px) saturate(250%) !important;
+    border: 1px solid rgba(37, 99, 235, 0.15) !important;
+    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.15), 
+                inset 0 0 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* High Contrast Sapphire Ink for Light Mode */
+body.light-theme #navbar .nav-link,
+body.light-theme #navbar .text-slate-400,
+body.light-theme #navbar #theme-toggle,
+body.light-theme #navbar #mobile-menu-btn,
+body.light-theme #navbar .text-blue-500,
+body.light-theme #navbar span {
+    color: #172554 !important; /* Deep Sapphire for Brutal Clarity */
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* CTA Button - Force High Contrast */
 #navbar .bg-white,
 #navbar .bg-slate-900 {
     background-color: #ffffff !important;
     color: #2563eb !important;
+    font-weight: 700 !important;
+}
+
+body.light-theme #navbar .bg-white,
+body.light-theme #navbar .bg-slate-900 {
+    background-color: #172554 !important; /* Dark Button for Light Theme */
+    color: #ffffff !important;
 }
 
 /* Breathing Gloss Animation on Scroll */
@@ -1346,10 +1365,8 @@ body.light-theme nav#navbar {
 @keyframes navbarPulse {
     0%, 100% { 
         box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.3); 
-        border-color: rgba(255, 255, 255, 0.3);
     }
     50% { 
-        box-shadow: 0 15px 45px -5px rgba(37, 99, 235, 0.7); 
-        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 15px 45px -5px rgba(37, 99, 235, 0.6); 
     }
 }
