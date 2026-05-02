@@ -127,6 +127,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CALENDAR LOGIC ---
     // Cal.com handles the booking flow internally via the injected script in index.html.
 
+    // --- LEAD CAPTURE SYSTEM (The Audit Request) ---
+    const auditForm = document.getElementById('audit-form');
+    const formSuccess = document.getElementById('form-success');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (auditForm) {
+        auditForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Change button state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Processing...</span>';
+            submitBtn.disabled = true;
+            lucide.createIcons(); // Refresh icons for the loader
+
+            // Collect Data
+            const formData = new FormData(auditForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                /**
+                 * AUTOMATION NOTE: 
+                 * Replace the URL below with your REAL Make.com Webhook URL
+                 */
+                const WEBHOOK_URL = 'https://hook.us1.make.com/YOUR_WEBHOOK_ID_HERE';
+                
+                // For testing/demonstration, we'll simulate a successful request 
+                // if the URL is still the placeholder.
+                if (WEBHOOK_URL.includes('YOUR_WEBHOOK_ID_HERE')) {
+                    console.log('Simulating successful submission. Data:', data);
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                } else {
+                    const response = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    if (!response.ok) throw new Error('Submission Failed');
+                }
+
+                // Success State
+                auditForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+                formSuccess.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-4', 'duration-700');
+                
+            } catch (error) {
+                console.error('Automation Error:', error);
+                alert('System Error: Could not trigger automation. Please try again.');
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                lucide.createIcons();
+            }
+        });
+    }
+
     // --- MOBILE MENU LOGIC ---
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -155,16 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
     const body = document.body;
-    
-    // Check local storage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    
-    // Default to dark mode unless user saved light mode
-    if (savedTheme === 'light') {
-        body.classList.add('light-theme');
-    }
 
+    // Theme state is already initialized by the blocking script in index.html 
+    // to prevent Flash of Dark Theme (FODT). We just handle the sync here.
     const updateThemeIcons = () => {
         const isLight = body.classList.contains('light-theme');
         document.querySelectorAll('.sun-icon').forEach(el => el.classList.toggle('hidden', isLight));
