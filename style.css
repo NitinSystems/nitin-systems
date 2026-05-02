@@ -832,21 +832,28 @@ body.light-theme .before-after-card.border-green-500\/10 {
     border-color: rgba(34, 197, 94, 0.2) !important;
 }
 
-/* Elite Navbar in Light Mode - Blue Crystal Glass Effect */
+/* Elite Navbar in Light Mode - Blue Stained Glass Effect */
 body.light-theme nav#navbar {
-    background-color: rgba(37, 99, 235, 0.05) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    border-color: rgba(37, 99, 235, 0.2) !important;
-    box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.1) !important;
+    background-color: rgba(37, 99, 235, 0.8) !important;
+    backdrop-filter: blur(15px) saturate(180%) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.5) !important;
 }
 
-body.light-theme nav#navbar .text-slate-400 {
-    color: #475569 !important;
+body.light-theme nav#navbar .nav-link,
+body.light-theme nav#navbar .text-slate-400,
+body.light-theme nav#navbar #theme-toggle,
+body.light-theme nav#navbar #mobile-menu-btn {
+    color: #ffffff !important;
 }
 
 body.light-theme nav#navbar .bg-white {
-    background-color: #0f172a !important;
-    color: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #2563eb !important;
+}
+
+body.light-theme nav#navbar .text-blue-500 {
+    color: #ffffff !important; /* Ensure NS logo is white on blue */
 }
 
 body.light-theme .shadow-2xl {
