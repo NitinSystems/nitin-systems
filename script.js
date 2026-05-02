@@ -168,10 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!response.ok) throw new Error('Submission Failed');
                 }
 
-                // Success State
-                auditForm.classList.add('hidden');
-                formSuccess.classList.remove('hidden');
-                formSuccess.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-4', 'duration-700');
+                // Success State - Professional Redirect
+                window.location.href = 'thank-you.html';
                 
             } catch (error) {
                 console.error('Automation Error:', error);
