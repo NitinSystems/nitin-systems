@@ -37,6 +37,19 @@
 </head>
 
 <body>
+    <script>
+        /**
+         * EMERGENCY THEME ENGINE (Blocking)
+         * Prevents "Flash of Dark Theme" (FODT) by applying the saved theme 
+         * before the browser paints the first pixel of the body.
+         */
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        })();
+    </script>
 
 
     <!-- 1. NAVIGATION -->
