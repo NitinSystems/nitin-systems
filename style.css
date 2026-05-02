@@ -1366,6 +1366,27 @@ body.light-theme #navbar .bg-slate-900:first-child {
     border: 1px solid rgba(37, 99, 235, 0.3) !important; /* Blue Glow Border */
 }
 
+/* LEAD CAPTURE FORM - THEME OVERRIDES */
+body.light-theme #contact-form h2 {
+    color: #172554 !important;
+}
+
+body.light-theme #contact-form input,
+body.light-theme #contact-form textarea {
+    background-color: rgba(37, 99, 235, 0.05) !important;
+    border-color: rgba(37, 99, 235, 0.1) !important;
+    color: #172554 !important;
+}
+
+body.light-theme #contact-form input::placeholder,
+body.light-theme #contact-form textarea::placeholder {
+    color: rgba(23, 37, 84, 0.5) !important;
+}
+
+body.light-theme #form-success h3 {
+    color: #172554 !important;
+}
+
 /* Breathing Gloss Animation on Scroll */
 #navbar.navbar-scrolled {
     animation: navbarPulse 4s infinite ease-in-out !important;
