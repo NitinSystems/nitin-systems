@@ -50,6 +50,19 @@
     }
 }
 
+/* --- MOBILE MENU THEME ADAPTATION --- */
+#mobile-menu .mobile-link {
+    color: #ffffff; /* White by default (Dark Mode) */
+}
+
+body.light-theme #mobile-menu .mobile-link {
+    color: #0f172a !important; /* Dark Slate for Light Mode */
+}
+
+#mobile-menu .mobile-cta-btn {
+    color: #ffffff !important; /* Force white text on CTA for both modes */
+}
+
 /* Base Styles */
 body {
     background-color: var(--bg-primary);
