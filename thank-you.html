@@ -32,7 +32,8 @@
             justify-content: center;
             padding: 24px;
             text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+            position: relative;
+            z-index: 10;
         }
         .animate-bounce-in {
             animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -45,7 +46,11 @@
         }
     </style>
 </head>
-<body class="bg-[#0f172a] transition-colors duration-500">
+<body class="bg-primary transition-colors duration-500 overflow-hidden">
+    <!-- Pattern Layer -->
+    <div class="absolute inset-0 z-0 vault-bg-depth pointer-events-none opacity-50"></div>
+    <div class="absolute inset-0 z-0 section-dot-texture pointer-events-none opacity-20"></div>
+
     <script>
         /**
          * EMERGENCY THEME ENGINE (Blocking)
