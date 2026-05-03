@@ -183,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // --- GOOGLE APPS SCRIPT INTEGRATION ---
                 // Replace the URL below with your actual Deployment URL
-                const WEBHOOK_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+                const WEBHOOK_URL = 'https://hook.eu1.make.com/rx4alcfh1rdmedx1en3btjl7d1slgnq8'; 
                 
-                if (WEBHOOK_URL !== 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+                if (WEBHOOK_URL) {
                     await fetch(WEBHOOK_URL, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -241,9 +241,19 @@ document.addEventListener('DOMContentLoaded', () => {
             data.source = 'Audit'; // Explicitly tag the source for CRM logic
 
             try {
-                await new Promise(resolve => setTimeout(resolve, 1500));
+                // Send data to Make.com Webhook
+                const WEBHOOK_URL = 'https://hook.eu1.make.com/rx4alcfh1rdmedx1en3btjl7d1slgnq8';
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(data)
+                });
+
+                // Small delay for UX feel
+                await new Promise(resolve => setTimeout(resolve, 800));
                 window.location.href = 'thank-you.html';
             } catch (error) {
+                console.error('Audit Submission Error:', error);
                 alert('System Error: Please try again.');
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
