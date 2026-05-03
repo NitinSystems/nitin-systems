@@ -148,9 +148,16 @@ body h1 {
     font-size: var(--h1-size) !important;
     line-height: var(--h1-leading) !important;
     font-weight: 900 !important;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.04em;
     margin-bottom: var(--heading-gap);
     color: var(--text-bright);
+}
+
+@media (max-width: 768px) {
+    body h1 {
+        letter-spacing: -0.02em;
+        line-height: 1.1 !important;
+    }
 }
 
 body h2 {
@@ -1037,9 +1044,17 @@ body.light-theme #hero-cta {
 /* --- SYSTEMS CONCIERGE WIDGET --- */
 .concierge-widget {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 2.5rem;
+    right: 2.5rem;
     z-index: 100;
+}
+
+@media (max-width: 768px) {
+    .concierge-widget {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        transform: scale(0.85);
+    }
 }
 
 .concierge-btn {
