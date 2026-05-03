@@ -169,17 +169,18 @@
             <a href="#audit" class="mobile-link text-2xl font-black uppercase tracking-tighter text-blue-500">Get Free Audit</a>
         </div>
 
-        <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
+        <button id="mobile-nav-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
             data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-            class="mobile-cta-btn mt-4 w-full bg-blue-600 text-white py-3 rounded-xl font-black uppercase tracking-widest text-[10px] text-center shadow-lg shadow-blue-500/20">
-            Get Review
+            class="mt-8 w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase tracking-widest text-xs shadow-lg shadow-blue-500/20">
+            Get Free System Audit
         </button>
     </div>
 
-    <!-- 2. HERO SECTION -->
     <section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <!-- Atmosphere Layer -->
         <div class="absolute inset-0 z-0 hero-bg-atmosphere pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4"></div>
         
         <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-center relative z-10 px-6">
             <div class="lg:col-span-7 flex flex-col justify-center reveal">
@@ -331,7 +332,7 @@
         <div class="max-w-5xl mx-auto reveal relative z-10">
             <div class="section-tag justify-center lg:justify-start">The Architect</div>
             <div
-                class="about-card grid md:grid-cols-[1fr_2fr] gap-12 items-center bg-white/[0.02] border border-white/5 rounded-[3rem] p-8 md:p-14 transition-all duration-500 hover:border-blue-500/20">
+                class="about-card grid md:grid-cols-[1fr_2fr] gap-12 items-center bg-white/[0.02] border border-white/5 rounded-[3rem] p-8 md:p-14 transition-all duration-500 hover:border-blue-500/20 shadow-2xl">
                 <div class="flex flex-col items-center text-center">
                     <div
                         class="w-48 h-48 rounded-full bg-slate-800 border-4 border-blue-500/20 overflow-hidden mb-8 shadow-2xl relative group">
@@ -474,7 +475,18 @@
                         </p>
                     </div>
 
-                    <div class="p-8 rounded-[2rem] bg-blue-600/5 border border-blue-500/10 transition-all hover:bg-blue-600/10">
+                    <div class="grid grid-cols-2 gap-8 mt-12">
+                        <div class="reveal-delay-1">
+                            <div class="text-4xl font-black text-blue-500 mb-2">98%</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Revenue Leakage in Manual Pipelines</div>
+                        </div>
+                        <div class="reveal-delay-2">
+                            <div class="text-4xl font-black text-blue-500 mb-2">85%</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Automation Efficiency Gains</div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 rounded-[2rem] bg-blue-600/5 border border-blue-500/10 transition-all hover:bg-blue-600/10 mt-8">
                         <p class="text-lg font-bold text-bright mb-4">The result is not failure. It is constant friction.</p>
                         <p class="text-lg text-accent font-medium leading-relaxed mb-0">My focus is on building the infrastructure that makes this friction impossible.</p>
                     </div>
