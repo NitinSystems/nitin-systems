@@ -203,11 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     gateModal.classList.add('hidden');
                     document.body.style.overflow = '';
                     
-                    // Open the requested PDF
-                    if (pendingResourcePath) {
-                        window.open(pendingResourcePath, '_blank');
-                    }
-                    
                     // Reset form for next time
                     setTimeout(() => {
                         gateForm.classList.remove('hidden');
@@ -216,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }, 500);
-                }, 2000);
+                }, 3000); // 3 second delay to let them read the success message
             } catch (error) {
                 console.error('Vault Access Error:', error);
                 submitBtn.innerHTML = 'Error. Try Again.';
