@@ -193,21 +193,21 @@ body p {
 
 /* --- SECTION BACKGROUND SYSTEM --- */
 :root {
-    --bg-primary: #0f172a;
-    /* Midnight Slate */
-    --bg-secondary: #1e293b;
-    /* Slate 800 for contrast */
-    --bg-tertiary: #020617;
-    /* Deep Midnight for emphasis */
+    --bg-primary: #0f172a;   /* Midnight Slate */
+    --bg-secondary: #1e293b; /* Slate 800 (Mid) */
+    --bg-tertiary: #020617;  /* Deep Midnight (Darkest) */
+    --bg-architect: #0f172a;
 }
 
 body.light-theme {
-    --bg-primary: #f8fafc;
-    /* Slate 50 */
-    --bg-secondary: #f1f5f9;
-    /* Slate 100 */
-    --bg-tertiary: #ffffff;
-    /* Pure White */
+    --bg-primary: #f8fafc;   /* Slate 50 (Lightest) */
+    --bg-secondary: #f1f5f9; /* Slate 100 (Mid) */
+    --bg-tertiary: #ffffff;  /* Pure White */
+    --bg-architect: #d4e8fa; /* Crystal Blue Tint */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --text-bright: #0f172a;
 }
 
 .bg-primary {
@@ -663,18 +663,6 @@ body.light-theme .before-after-card:hover {
     .modal-content {
         padding: 1.5rem;
     }
-}
-
-/* --- LIGHT THEME OVERRIDES --- */
-body.light-theme {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
-    --bg-architect: #d4e8fa;
-    --card-bg: rgba(255, 255, 255, 0.7);
-    --text-main: #334155;
-    --text-muted: #64748b;
-    --text-bright: #0f172a;
 }
 
 body.light-theme {
