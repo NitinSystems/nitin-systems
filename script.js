@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // --- REMOVED FLASHLIGHT TRACKING ---
-
     // --- REVEAL ON SCROLL ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { 
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (manual) {
             isUserInteracting = true;
             clearInterval(loopInterval);
-            // Restart loop after 8 seconds of no interaction
             setTimeout(() => { isUserInteracting = false; startLoop(); }, 8000);
         }
 
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!statusDisplay || !subtextDisplay || !iconContainer) return;
 
-        // Update backbone progress
         if (backboneProgress) {
             const progress = ((phase - 1) / (totalPhases - 1)) * 100;
             backboneProgress.style.height = `${progress}%`;
@@ -75,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Elite Transition for right side
         iconContainer.classList.add('phase-fade-exit');
         
         setTimeout(() => {
@@ -101,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000); 
     }
 
-    // Add click listeners for manual override
     document.querySelectorAll('[data-phase]').forEach(card => {
         card.addEventListener('click', () => {
             const phase = parseInt(card.getAttribute('data-phase'));
@@ -109,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const deliverySection = document.getElementById('delivery-section');
+    const deliverySection = document.getElementById('how-i-work');
     if (deliverySection) {
         const deliveryObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) { 
@@ -122,61 +116,126 @@ document.addEventListener('DOMContentLoaded', () => {
         deliveryObserver.observe(deliverySection);
     }
 
+    // --- STRATEGIC FAQ ACCORDION ---
+    const faqTriggers = document.querySelectorAll('.faq-trigger');
+    faqTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const content = trigger.nextElementSibling;
+            const icon = trigger.querySelector('i');
+            
+            const isHidden = content.classList.contains('hidden');
+            
+            document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.faq-trigger i').forEach(i => i.style.transform = 'rotate(0deg)');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
 
+    // --- GLOBAL RESOURCE GATE LOGIC ---
+    const gateModal = document.getElementById('resource-gate-modal');
+    const gateForm = document.getElementById('gate-form');
+    const gateSuccess = document.getElementById('gate-success');
+    let pendingResourcePath = '';
 
-    // --- CALENDAR LOGIC ---
-    // Cal.com handles the booking flow internally via the injected script in index.html.
+    window.openResourceGate = function(pdfPath) {
+        pendingResourcePath = pdfPath;
+        if (gateModal) {
+            gateModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    };
 
-    // --- LEAD CAPTURE SYSTEM (The Audit Request) ---
+    const closeGateBtn = document.getElementById('close-gate-modal');
+    if (closeGateBtn && gateModal) {
+        closeGateBtn.addEventListener('click', () => {
+            gateModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+    }
+
+    if (gateForm) {
+        gateForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = gateForm.querySelector('button');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Authorizing...</span>';
+            submitBtn.disabled = true;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            const formData = new FormData(gateForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                // --- GOOGLE APPS SCRIPT INTEGRATION ---
+                // Replace the URL below with your actual Deployment URL
+                const WEBHOOK_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+                
+                if (WEBHOOK_URL !== 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify(data)
+                    });
+                } else {
+                    // Simulation for local testing
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                }
+                
+                gateForm.classList.add('hidden');
+                gateSuccess.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    gateModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    
+                    // Open the requested PDF
+                    if (pendingResourcePath) {
+                        window.open(pendingResourcePath, '_blank');
+                    }
+                    
+                    // Reset form for next time
+                    setTimeout(() => {
+                        gateForm.classList.remove('hidden');
+                        gateSuccess.classList.add('hidden');
+                        gateForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 500);
+                }, 2000);
+            } catch (error) {
+                console.error('Vault Access Error:', error);
+                submitBtn.innerHTML = 'Error. Try Again.';
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // --- AUDIT FORM SUBMISSION ---
     const auditForm = document.getElementById('audit-form');
-    const formSuccess = document.getElementById('form-success');
     const submitBtn = document.getElementById('submit-btn');
 
     if (auditForm) {
         auditForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Change button state
             const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Processing...</span>';
+            submitBtn.innerHTML = 'Processing...';
             submitBtn.disabled = true;
-            lucide.createIcons(); // Refresh icons for the loader
 
-            // Collect Data
             const formData = new FormData(auditForm);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                /**
-                 * AUTOMATION NOTE: 
-                 * Replace the URL below with your REAL Make.com Webhook URL
-                 */
-                const WEBHOOK_URL = 'https://hook.us1.make.com/YOUR_WEBHOOK_ID_HERE';
-                
-                // For testing/demonstration, we'll simulate a successful request 
-                // if the URL is still the placeholder.
-                if (WEBHOOK_URL.includes('YOUR_WEBHOOK_ID_HERE')) {
-                    console.log('Simulating successful submission. Data:', data);
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                } else {
-                    const response = await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    if (!response.ok) throw new Error('Submission Failed');
-                }
-
-                // Success State - Professional Redirect
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 window.location.href = 'thank-you.html';
-                
             } catch (error) {
-                console.error('Automation Error:', error);
-                alert('System Error: Could not trigger automation. Please try again.');
+                alert('System Error: Please try again.');
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
-                lucide.createIcons();
             }
         });
     }
@@ -210,8 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
     const body = document.body;
 
-    // Theme state is already initialized by the blocking script in index.html 
-    // to prevent Flash of Dark Theme (FODT). We just handle the sync here.
     const updateThemeIcons = () => {
         const isLight = body.classList.contains('light-theme');
         document.querySelectorAll('.sun-icon').forEach(el => el.classList.toggle('hidden', isLight));
@@ -227,52 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
     if (themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleTheme);
-    
-    // Initialize icons on load
     updateThemeIcons();
-
-    // --- PDF MODAL LOGIC ---
-    const pdfModal = document.getElementById('pdf-modal');
-    const modalContainer = document.getElementById('modal-container');
-    const viewChecklistBtn = document.getElementById('view-checklist-btn');
-    const closeModalBtn = document.getElementById('close-modal-btn');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const pdfFrame = document.getElementById('pdf-frame');
-
-    function openModal(pdfUrl) {
-        if (!pdfModal || !pdfFrame) return;
-        pdfFrame.src = pdfUrl;
-        pdfModal.classList.remove('opacity-0', 'pointer-events-none');
-        modalContainer.classList.remove('scale-95');
-        modalContainer.classList.add('scale-100');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        if (!pdfModal || !pdfFrame) return;
-        pdfModal.classList.add('opacity-0', 'pointer-events-none');
-        modalContainer.classList.remove('scale-100');
-        modalContainer.classList.add('scale-95');
-        document.body.style.overflow = 'auto';
-        setTimeout(() => {
-            pdfFrame.src = '';
-        }, 500);
-    }
-
-    if (viewChecklistBtn) {
-        viewChecklistBtn.addEventListener('click', () => {
-            // Restore Privacy Mode & Smoothness
-            openModal('assets/pdfs/the-lead-engine-checklist.pdf#toolbar=0&navpanes=0&scrollbar=0');
-        });
-    }
-
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
 
     // --- SYSTEMS CONCIERGE LOGIC ---
     const conciergeBtn = document.getElementById('concierge-btn');
@@ -282,8 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
         conciergeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             conciergeMenu.classList.toggle('active');
-            
-            // Toggle icon animation
             const icon = conciergeBtn.querySelector('i');
             if (conciergeMenu.classList.contains('active')) {
                 icon.setAttribute('data-lucide', 'x');
@@ -293,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
 
-        // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (!conciergeBtn.contains(e.target) && !conciergeMenu.contains(e.target)) {
                 conciergeMenu.classList.remove('active');
@@ -303,71 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // --- TECHNICAL BENCHMARKS COUNTER LOGIC ---
-    const countUp = (element) => {
-        const target = parseFloat(element.getAttribute('data-target'));
-        const suffix = element.getAttribute('data-suffix') || '';
-        const duration = 2000; // 2 seconds
-        const startTime = performance.now();
-        const startValue = parseFloat(element.innerText) || 0;
-
-        const update = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Ease out quad
-            const easeProgress = progress * (2 - progress);
-            
-            const currentValue = startValue + (target - startValue) * easeProgress;
-            
-            if (target % 1 === 0) {
-                element.innerText = Math.floor(currentValue) + suffix;
-            } else {
-                element.innerText = currentValue.toFixed(1) + suffix;
-            }
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            }
-        };
-
-        requestAnimationFrame(update);
-    };
-
-    const metricObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                countUp(entry.target);
-                metricObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.metric-value').forEach(metric => {
-        metricObserver.observe(metric);
-    });
-
-    // --- ELITE GLIDE SMOOTH SCROLL ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const target = document.querySelector(targetId);
-            if (target) {
-                const offset = 100; // Premium offset for fixed navbar
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = target.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
 
     // --- NAVBAR SCROLL ACTIVATION ---
     const navbar = document.getElementById('navbar');
