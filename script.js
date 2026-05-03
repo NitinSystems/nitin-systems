@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data.source = 'Audit'; // Explicitly tag the source for CRM logic
 
             try {
-                // Send data to Make.com Webhook
+                // Send diagnostic data to Make.com Infrastructure
                 const WEBHOOK_URL = 'https://hook.eu1.make.com/rx4alcfh1rdmedx1en3btjl7d1slgnq8';
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(data)
                 });
 
-                // Small delay for UX feel
+                // Strategic delay for system feedback feel
                 await new Promise(resolve => setTimeout(resolve, 800));
                 window.location.href = 'thank-you.html';
             } catch (error) {
                 console.error('Audit Submission Error:', error);
-                alert('System Error: Please try again.');
+                alert('System Error: Infrastructure unreachable. Please try again.');
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
             }
