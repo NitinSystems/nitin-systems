@@ -1348,11 +1348,11 @@ nav#navbar {
 
 /* LIGHT MODE - THE JET SUIT (Sapphire Ink on Glass) */
 body.light-theme nav#navbar {
-    background-color: rgba(37, 99, 235, 0.4) !important; /* Transparent Blue */
-    backdrop-filter: blur(30px) saturate(250%) !important;
-    border: 1px solid rgba(37, 99, 235, 0.15) !important;
-    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.15), 
-                inset 0 0 20px rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(212, 232, 250, 0.7) !important; /* Tinted Crystal (#d4e8fa) */
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    border: 1px solid rgba(37, 99, 235, 0.2) !important;
+    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.1), 
+                inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
 }
 
 /* High Contrast Sapphire Ink for Light Mode */
@@ -1391,19 +1391,19 @@ body.light-theme #navbar .bg-slate-900:first-child {
 }
 
 /* LEAD CAPTURE FORM - THEME OVERRIDES */
-body.light-theme #contact-form h2 {
+body.light-theme #audit h2 {
     color: #172554 !important;
 }
 
-body.light-theme #contact-form input,
-body.light-theme #contact-form textarea {
+body.light-theme #audit-form input,
+body.light-theme #audit-form textarea {
     background-color: rgba(37, 99, 235, 0.05) !important;
     border-color: rgba(37, 99, 235, 0.1) !important;
     color: #172554 !important;
 }
 
-body.light-theme #contact-form input::placeholder,
-body.light-theme #contact-form textarea::placeholder {
+body.light-theme #audit-form input::placeholder,
+body.light-theme #audit-form textarea::placeholder {
     color: rgba(23, 37, 84, 0.5) !important;
 }
 
@@ -1424,22 +1424,22 @@ body.light-theme #form-success h3 {
     color: #ffffff !important;
 }
 
-body.light-theme #contact-form {
+body.light-theme #audit {
     background-color: #f1f5f9 !important;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-body.light-theme #contact-form .backdrop-blur-3xl {
+body.light-theme #audit .backdrop-blur-3xl {
     background-color: #ffffff !important;
     border: 1px solid rgba(37, 99, 235, 0.1) !important;
     box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1) !important;
 }
 
-body.light-theme #contact-form h2 {
+body.light-theme #audit h2 {
     color: #0f172a !important;
 }
 
-body.light-theme #contact-form p {
+body.light-theme #audit p {
     color: #475569 !important;
 }
 
