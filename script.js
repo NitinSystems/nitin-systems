@@ -195,6 +195,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Simulation for local testing
                     await new Promise(resolve => setTimeout(resolve, 1500));
                 }
+
+                // Strategic redirection based on requested asset
+                if (resourceName === 'The Omni-Channel Engine') {
+                    window.open('assets/case-studies/lead_capture_to_booking_system_gohighlevel.pdf', '_blank');
+                } else if (resourceName === 'The Logic Flow Architect') {
+                    window.open('assets/case-studies/smart_lead_qualification_engine_case_study.pdf', '_blank');
+                } else if (resourceName === 'Systems Architecture Reference') {
+                    window.open('assets/case-studies/system_architecture_reference_you_first.pdf', '_blank');
+                } else if (resourceName === 'Client Communication Interface') {
+                    window.open('assets/case-studies/client_communication_interface_them_first.pdf', '_blank');
+                } else {
+                    window.open('assets/case-studies/systems-that-scale.pdf', '_blank');
+                }
                 
                 gateForm.classList.add('hidden');
                 gateSuccess.classList.remove('hidden');
