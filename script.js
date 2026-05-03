@@ -141,8 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateSuccess = document.getElementById('gate-success');
     let pendingResourcePath = '';
 
-    window.openResourceGate = function(pdfPath) {
+    window.openResourceGate = function(pdfPath, title, desc) {
         pendingResourcePath = pdfPath;
+        
+        // Update Modal Content Dynamically
+        const modalTitle = document.getElementById('gate-modal-title');
+        const modalDesc = document.getElementById('gate-modal-desc');
+        const assetInput = document.getElementById('asset-name-input');
+        
+        if (modalTitle) modalTitle.innerText = title;
+        if (modalDesc) modalDesc.innerText = desc;
+        if (assetInput) assetInput.value = title;
+
         if (gateModal) {
             gateModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -228,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const formData = new FormData(auditForm);
             const data = Object.fromEntries(formData.entries());
+            data.source = 'Audit'; // Explicitly tag the source for CRM logic
 
             try {
                 await new Promise(resolve => setTimeout(resolve, 1500));
