@@ -830,6 +830,27 @@ body.light-theme .before-after-card.border-green-500\/10 {
 /* --- MASTER NAVBAR SYSTEM (Blue Stained Glass) --- */
 nav#navbar {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.light-theme nav#navbar {
+    background-color: rgba(212, 232, 250, 0.7) !important; /* Tinted Crystal (#d4e8fa) */
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+    box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Navbar Scroll Interaction */
+nav#navbar.nav-scrolled {
+    top: 1rem !important;
+    width: 95% !important;
+    background-color: rgba(15, 23, 42, 0.8) !important;
+}
+
+body.light-theme nav#navbar.nav-scrolled {
+    background-color: rgba(212, 232, 250, 0.9) !important;
 }
 
 
