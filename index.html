@@ -77,29 +77,44 @@
     </script>
 
 
-    <!-- 1. NAVIGATION -->
     <nav id="navbar"
         class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] max-w-7xl rounded-3xl border border-transparent py-3 md:py-4 px-6 shadow-2xl">
         <div class="flex justify-between items-center">
-            <div class="flex items-center gap-3 group">
-                <div class="relative">
-                    <img src="assets/images/nitin_systems_master_logo.png" alt="Nitin Systems Logo" class="w-10 h-10 object-contain brightness-110">
-                    <div class="absolute -inset-1 bg-blue-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class="flex items-center gap-4 cursor-pointer group"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-blue-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-500">
+                    </div>
+                    <img src="assets/images/nitin_systems_master_logo.png" 
+                         alt="Nitin Systems Logo" 
+                         class="relative w-10 h-10 rounded-xl border border-blue-500/30 shadow-xl object-cover scale-110">
                 </div>
-                <span class="text-xs font-black uppercase tracking-[0.3em] text-white whitespace-nowrap">NITIN<br />
+                <span class="hidden sm:block font-black tracking-[0.3em] text-white uppercase text-[10px]">NITIN
                     SYSTEMS</span>
             </div>
 
             <!-- Desktop Links -->
-            <button id="mobile-menu-btn" class="p-2 text-slate-400 hover:text-white lg:hidden">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+            <div
+                class="hidden lg:flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+                <a href="#about" class="nav-link hover:text-white transition-colors">The Architect</a>
+                <a href="#vault" class="nav-link hover:text-white transition-colors">Vault</a>
+                <a href="#systems" class="nav-link hover:text-white transition-colors">Blueprints</a>
+                <a href="#how-i-work" class="nav-link hover:text-white transition-colors">Delivery</a>
+            </div>
+
+            <!-- CTA Anchor (Theme Toggle moved here to the Right) -->
+            <div class="hidden lg:flex items-center gap-4">
+                <button id="theme-toggle" class="hover:text-blue-400 transition-colors mr-2" aria-label="Toggle Theme">
+                    <i data-lucide="sun" class="w-4 h-4 sun-icon"></i>
+                    <i data-lucide="moon" class="w-4 h-4 moon-icon hidden"></i>
                 </button>
-                <div class="hidden lg:flex items-center gap-8">
-                    <a href="#about" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Architecture</a>
-                    <a href="#process" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Case Studies</a>
-                    <a href="#vault" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Vault</a>
-                    <a href="#audit" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all transform hover:scale-105 shadow-xl">Get Free System Audit</a>
-                </div>
+                <button id="nav-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
+                    data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                    class="btn-slide-hover px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest z-10 overflow-hidden">
+                    <span class="cta-text">Get Free System Audit</span>
+                </button>
+            </div>
 
             <!-- Mobile Controls -->
             <div class="flex lg:hidden items-center gap-5">
@@ -124,6 +139,14 @@
                         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
                     </svg>
                 </button>
+                <button id="mobile-menu-btn" class="text-white p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12" />
+                        <line x1="4" x2="20" y1="6" y2="6" />
+                        <line x1="4" x2="20" y1="18" y2="18" />
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -139,11 +162,11 @@
             </button>
         </div>
 
-        <div class="flex flex-col gap-4">
-            <a href="#about" class="mobile-link text-sm font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">Architecture</a>
-            <a href="#process" class="mobile-link text-sm font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">Case Studies</a>
-            <a href="#vault" class="mobile-link text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors">Vault</a>
-            <a href="#audit" class="mobile-link text-sm font-bold uppercase tracking-widest hover:text-blue-400 transition-colors">Audit</a>
+        <div class="flex flex-col gap-6">
+            <a href="#about" class="mobile-link text-2xl font-black uppercase tracking-tighter text-white">Architecture</a>
+            <a href="#process" class="mobile-link text-2xl font-black uppercase tracking-tighter text-white">Case Studies</a>
+            <a href="#vault" class="mobile-link text-2xl font-black uppercase tracking-tighter text-white">Vault</a>
+            <a href="#audit" class="mobile-link text-2xl font-black uppercase tracking-tighter text-blue-500">Get Free Audit</a>
         </div>
 
         <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
@@ -159,24 +182,36 @@
         <div class="absolute inset-0 z-0 hero-bg-atmosphere pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div class="text-left relative z-10 reveal active">
+            <div class="lg:col-span-7 flex flex-col justify-center reveal">
                 <div
                     class="inline-block px-5 py-2 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-[10px] font-black tracking-[0.3em] uppercase mb-6">
                     Marketing Systems & Automation
                 </div>
-                <h1 class="reveal-delay-1">
-                        I Build The <span class="text-blue-500">Automation Infrastructure</span> That Stops Leads From Dying In Your Inbox.
-                    </h1>
-                    <p class="section-subtext mb-12 reveal-delay-2 max-w-xl">
-                        I architect the systems that turn manual friction into autonomous growth. Secure, scalable, and built for high-throughput execution.
+                <h1 class="max-w-xl">
+                    I Build the Automation Infrastructure That Stops <span class="text-animate-gradient">Leads From Dying in Your Inbox.</span>
+                </h1>
+                <p class="max-w-lg section-subtext text-lg">
+                    I engineer the <strong>Automation Infrastructure</strong> that stops high-growth businesses from losing revenue to manual chaos and memory-based execution.
+                </p>
+                <div class="px-6 py-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 mb-4 flex items-center gap-4 group hover:bg-blue-500/10 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center shrink-0">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0">
+                        <span class="text-blue-400">Architect's Guarantee:</span> If the 15-min audit doesn't surface 3 specific gaps, I'll send you a free implementation brief.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center gap-6 reveal-delay-3">
-                        <a href="#audit" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-black transition-all transform hover:scale-105 shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] uppercase text-xs tracking-widest">
-                            Get Free System Audit
-                        </a>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="flex flex-col items-center gap-2 w-full sm:w-auto">
+                        <button id="hero-cta" data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
+                            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-[2rem] font-black flex items-center gap-4 transition-all transform hover:scale-105 shadow-[0_25px_50px_-12px_rgba(37,99,235,0.5)] uppercase text-sm w-full sm:w-auto">
+                            Get Free System Audit <i data-lucide="chevron-right"></i>
+                        </button>
                         <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest opacity-60">No
                             commitment. Just a 15-min diagnostic.</p>
                     </div>
+                </div>
             </div>
             <div class="relative flex justify-center items-center h-[500px] lg:h-[600px] reveal active">
                 <div
@@ -580,9 +615,10 @@
                 <div class="section-tag mx-auto mb-6">Immediate Action</div>
                 <h3 class="text-3xl text-white mb-4 uppercase tracking-tighter font-black italic">This is exactly the problem I need to solve.</h3>
                 <p class="text-slate-400 mb-8 max-w-xl mx-auto">Get a full diagnostic of your current infrastructure and a roadmap to autonomous execution.</p>
-                <a href="#audit" class="inline-flex items-center justify-center px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black transition-all transform hover:scale-105 shadow-xl uppercase text-xs tracking-widest">
+                <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
+                    class="px-12 py-5 bg-blue-600 text-white rounded-full text-[12px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/20">
                     Get Free System Audit
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -1014,10 +1050,10 @@
                                 <textarea name="message" placeholder="What is your biggest system bottleneck?" rows="4" required
                                     class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-500"></textarea>
                             </div>
-                            <button type="submit" id="submit-btn" class="w-full py-6 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black transition-all transform hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] flex items-center justify-center gap-3 uppercase text-xs tracking-widest group">
-                        Get Free System Audit
-                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                    </button>
+                            <button type="submit" id="submit-btn"
+                                class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 font-black uppercase tracking-widest py-5 rounded-2xl shadow-xl shadow-orange-500/20 hover:scale-[1.02] transition-transform active:scale-95">
+                                Get Free System Audit
+                            </button>
                             <p class="text-[10px] text-center text-slate-500 uppercase tracking-widest mt-4">
                                 NO COMMITMENT. JUST A 15-MIN DIAGNOSTIC.
                             </p>
@@ -1040,19 +1076,43 @@
     <!-- 12. FINAL CTA: FOUNDING PARTNER INVITATION -->
     <section id="contact" class="bg-secondary px-6 py-24">
         <div class="max-w-6xl mx-auto relative group">
-            <div
-                class="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 rounded-[3.5rem] blur opacity-10 group-hover:opacity-30 transition duration-1000">
+            <div class="absolute -inset-1 bg-amber-500/20 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000">
             </div>
             <div
                 class="relative bg-[#050812] border border-white/5 rounded-[3.5rem] p-16 md:p-24 text-center overflow-hidden glow-gold">
-                    <div class="bg-blue-600/5 border border-blue-500/10 p-10 rounded-[3rem] text-center">
-                        <p class="text-sm font-bold text-accent mb-4 uppercase tracking-widest">Current Openings: 1/3 Remaining</p>
-                        <h3 class="text-2xl text-white font-black mb-6 uppercase tracking-tighter italic">Founding Partner Program</h3>
-                        <p class="text-lg text-slate-400 leading-relaxed mb-10">I am currently opening 1 position for my Founding Partner Program. This is a high-proximity partnership where I build and manage your entire system at a preferred rate in exchange for a performance benchmark case study.</p>
-                        <a href="https://wa.me/message/HF3LXMDUURKLF1" target="_blank" class="inline-flex items-center px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black transition-all transform hover:scale-105 shadow-xl uppercase text-xs tracking-widest">
-                            Apply for Founding Partnership
-                        </a>
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[9px] font-black uppercase tracking-[0.3em] mb-8">
+                    Selective Intake: Founding Partners
+                </div>
+                <h2>
+                    Build the Foundation <br /><span
+                        class="italic text-accent underline decoration-blue-500/20 underline-offset-8">of Your
+                        Scale.</span>
+                </h2>
+                <p class="text-base md:text-lg section-subtext max-w-2xl mx-auto font-medium leading-relaxed mt-6">
+                    I am currently opening <strong>1 position</strong> for Founding System Partners. I am looking for businesses
+                    ready to document a massive shift in operational clarity in exchange for subsidized rates and direct
+                    architectural oversight.
+                </p>
+                <div class="flex flex-col items-center justify-center gap-10 relative z-10 mt-12">
+                    <button data-cal-link="nitinmishra/30min" data-cal-namespace="30min"
+                        data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                        class="bg-amber-500 text-white px-12 py-5 rounded-2xl font-bold hover:bg-amber-600 transition-all transform hover:scale-105 uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                        Apply for Founding Partnership
+                    </button>
+                    <div class="text-center">
+                        <p class="text-[9px] font-black text-white/50 uppercase tracking-[0.2em] mb-1">Direct Inquiry:
+                        </p>
+                        <a href="mailto:NitinMishra.me@outlook.com"
+                            class="text-sm email-link-elite font-medium">NitinMishra.me@outlook.com</a>
                     </div>
+                </div>
+                <!-- Availability indicator -->
+                <div class="mt-12 flex items-center justify-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></div>
+                    <p class="text-[9px] font-black text-amber-500/60 uppercase tracking-[0.2em] mb-0">Current Openings:
+                        1/3 Remaining</p>
+                </div>
             </div>
         </div>
     </section>
