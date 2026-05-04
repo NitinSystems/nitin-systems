@@ -247,7 +247,7 @@ body.light-theme {
 .bento-card {
     position: relative;
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 2.5rem;
     backdrop-filter: blur(12px);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -467,9 +467,9 @@ body.light-theme .text-animate-gradient {
 }
 
 .phase-card.active {
-    background: rgba(15, 23, 42, 0.8);
-    border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.4);
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 40px -5px rgba(59, 130, 246, 0.3);
     transform: translateX(1rem);
 }
 
@@ -1471,6 +1471,9 @@ body.light-theme #footer-brand {
 /* FAQ Accordion Styles */
 .faq-item {
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .faq-trigger {
